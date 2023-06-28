@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym tracing</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js "></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <header>Gym tracing app</header>
+    <main>
+
+    </main>
+    <nav>
+        <ul id="mobile-nav">
+            <li class="mobile-nav__item active-nav-item" data-page="new-day">
+                <i class="fas fa-regular fa-circle-plus" data-page="new-day"></i>
+                <label>New Day</label>
+            </li>
+            <li class="mobile-nav__item" data-page="training-sets">
+                <i class="fas fa-regular fa-clipboard-list" data-page="training-sets"></i>
+                <label>Training sets</label>
+            </li>
+            <li class="mobile-nav__item" data-page="progress">
+                <i class="fas fa-regular fa-person-running" data-page="progress"></i>
+                <label>Progress</label>
+            </li>
+            <li class="mobile-nav__item" data-page="settings">
+                <i class="fas fa-regular fa-sliders" data-page="settings"></i>
+                <label>Settings</label>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
