@@ -9,7 +9,7 @@ const setSchema = new Schema({
     type: String,
   },
   exercices: {
-    type: [Number],
+    type: [String],
   },
 },{
     timestamps: true,
