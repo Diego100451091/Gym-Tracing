@@ -14,9 +14,17 @@
             <h1>New day</h1>
         </div>
         <div id="page_training-sets" class="main-container">
-            <h1>Training sets</h1>
-            <div id="set-creator">
-                <h2>Create new set</h2>
+            <nav id="training-set__nav">
+                <ul>
+                    <li class="training-set__nav-item active-training-set__nav-item" data-view="set-creator">
+                        <label>Create new set</label>
+                    </li>
+                    <li class="training-set__nav-item " data-view="sets-list">
+                        <label>Training sets</label>
+                    </li>
+                </ul>
+            </nav>
+            <div id="set-creator" class="training-sets__container">
                 <form id="new-set-form">
                     <input id="title" type="text">
                     <textarea id="description" rows="3"></textarea>
@@ -25,8 +33,7 @@
                 <ul id="exercises-list" class="scroller"></ul>
             </div>
 
-            <h2>Created sets:</h2>
-            <ul id="sets-list" class="scroller">
+            <ul id="sets-list" class="training-sets__container scroller">
             </ul>
         </div>
         <div id="page_progress" class="main-container">
