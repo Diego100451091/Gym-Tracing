@@ -186,13 +186,15 @@ nav {
 
   display: none;
   flex-direction: column;
-  align-items: center;  
-
+  align-items: left;
+  overflow: hidden;  
+}
+.active-main-container{
+  display: flex;
 }
 
 .main-container > h1 {
     width: 100%;
-
     padding: 0 1rem;
 }
 
@@ -220,6 +222,8 @@ nav {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+
+  transition: all 0.3s;
 }
 
 .active-training-set__nav-item{
@@ -235,11 +239,23 @@ nav {
   height: 4px;
   border-radius: 2px;
   background-color: var(--primary-color);
+}
 
+
+#training-set__container {
+  width: 200%;
+  height: 100%;
+  display: flex;
+
+  transition: all 0.2;
+}
+
+#training-set__container > div {
+  width: 100%;
 }
 
 #exercises-list{
-    max-height: 40vh;
+    max-height: 100vh;
 }
 
 /*#endregion*/

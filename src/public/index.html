@@ -13,7 +13,7 @@
         <div id="page_new-day" class="main-container">
             <h1>New day</h1>
         </div>
-        <div id="page_training-sets" class="main-container">
+        <div id="page_training-sets" class="main-container active-main-container">
             <nav id="training-set__nav">
                 <ul>
                     <li class="training-set__nav-item active-training-set__nav-item" data-view="set-creator">
@@ -24,17 +24,20 @@
                     </li>
                 </ul>
             </nav>
-            <div id="set-creator" class="training-sets__container">
-                <form id="new-set-form">
-                    <input id="title" type="text">
-                    <textarea id="description" rows="3"></textarea>
-                    <button>Create</button>
-                </form>
-                <ul id="exercises-list" class="scroller"></ul>
+            <div id="training-set__container">
+                <div id="set-creator__container">
+                    <form id="new-set-form">
+                        <input id="title" type="text">
+                        <textarea id="description" rows="3"></textarea>
+                        <button>Create</button>
+                    </form>
+                    <ul id="exercises-list" class="scroller"></ul>
+                </div>
+                <div id="sets-list__container">
+                    <ul id="sets-list" class="training-sets__container scroller">
+                    </ul>
+                </div>
             </div>
-
-            <ul id="sets-list" class="training-sets__container scroller">
-            </ul>
         </div>
         <div id="page_progress" class="main-container">
             <h1>Progress</h1>
@@ -46,11 +49,11 @@
     </main>
     <nav>
         <ul id="mobile-nav">
-            <li class="mobile-nav__item active-nav-item" data-page="new-day">
+            <li class="mobile-nav__item" data-page="new-day">
                 <i class="fas fa-regular fa-circle-plus" data-page="new-day"></i>
                 <label>New Day</label>
             </li>
-            <li class="mobile-nav__item" data-page="training-sets">
+            <li class="mobile-nav__item active-nav-item" data-page="training-sets">
                 <i class="fas fa-regular fa-clipboard-list" data-page="training-sets"></i>
                 <label>Training sets</label>
             </li>
