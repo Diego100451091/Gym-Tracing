@@ -7,9 +7,3 @@ export const loadExerciseSets = (callback) => {
 export const saveExerciseSet = (title, description, exercises) => {
   socket.emit("client:saveNewExerciseSet", { title, description, exercises });
 };
-
-// export const onNewNote = () => {
-//   socket.on("server:newExerciseSet", set => {
-
-//   })
-// }
