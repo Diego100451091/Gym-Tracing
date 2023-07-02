@@ -205,15 +205,11 @@ nav {
   height: 100%;
   position: relative;
   color: var(--color-text-main);
+  overflow: hidden;  
+}
 
 .hidden-page{
   display: none;
-  flex-direction: column;
-  align-items: left;
-  overflow: hidden;  
-}
-.active-main-container{
-  display: flex;
 }
 
 .main-container > h1 {
@@ -264,12 +260,10 @@ nav {
   background-color: var(--primary-color);
 }
 
-
 #training-set__container {
   width: 200%;
-  height: 100%;
+  height: calc(100% - 3rem);
   display: flex;
-
   transition: all 0.2;
 }
 
