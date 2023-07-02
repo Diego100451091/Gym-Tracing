@@ -1,4 +1,5 @@
 import { saveExerciseSet } from "./sockets.js";
+import { ExercisesList } from "./exercisesList.js";
 
 const PAGE_TYPES = Object.freeze({
   NEW_DAY: "new-day",
@@ -17,31 +18,6 @@ const exerciseList = new ExercisesList(document.getElementById("exercises-list")
 // Listeners for events
 creatorNavItem.addEventListener("click", () => setViewCreateSet());
 setsNavItem.addEventListener("click", () => setViewTrainingSets());
-
-/** Return the UI element of an exercise set
- * @param {object} exerciseSet
- * @param {string} exerciseSet.name
- * @param {string} exerciseSet.description
- * @param {string[]} exerciseSet.exercises
- * @returns {HTMLElement}
- */
-const exerciseSetUI = (exerciseSet) => {
-  const setItem = document.createElement("li");
-  setItem.classList.add("set-item");
-
-  setItem.innerHTML = `
-    <h3 class="set-item__title">${exerciseSet.name}</h3>
-    <p class="set-item__description">${exerciseSet.description}</p>
-    ${
-      exerciseSet.exercises
-        ? `<button class="set-item__expand">Expand</button>`
-        : ""
-    }
-    <button class="set-item__delete">Delete</button>
-  `;
-
-  return setItem;
-};
 
 /** Translate the training sets page container when the user move the pointer over it
  * @param {TouchEvent} event
@@ -111,7 +87,7 @@ const setViewTrainingSets = () => {
   creatorNavItem.classList.remove("active-training-set__nav-item");
   setsNavItem.classList.add("active-training-set__nav-item");
   // Move the container set to show the properly view
-  trainingSetContainer.style.transform = `translate(-${screen.width}px)`;
+  trainingSetContainer.style.transform = `translate(-50%)`;
   trainingSetContainer.dataset.isTranslated = "true";
 };
 
@@ -143,6 +119,30 @@ document.body.addEventListener("touchend", function (event) {
   }
 });
 
+/** Return the UI element of an exercise set
+ * @param {object} exerciseSet
+ * @param {string} exerciseSet.name
+ * @param {string} exerciseSet.description
+ * @param {string[]} exerciseSet.exercises
+ * @returns {HTMLElement}
+ */
+const exerciseSetUI = (exerciseSet) => {
+  const setItem = document.createElement("li");
+  setItem.classList.add("set-item");
+
+  setItem.innerHTML = `
+    <h3 class="set-item__title">${exerciseSet.name}</h3>
+    <p class="set-item__description">${exerciseSet.description}</p>
+    ${
+      exerciseSet.exercices
+        ? `<button class="set-item__expand">Expand</button>`
+        : ""
+    }
+    <button class="set-item__delete">Delete</button>
+  `;
+
+  return setItem;
+};
 
 /** Render the exercise sets into the list of sets element
  * @param {object[]} sets
@@ -151,16 +151,20 @@ document.body.addEventListener("touchend", function (event) {
  * @param {string[]} sets[].exercises
  */
 export const renderExerciseSets = (sets) => {
+  setLists.innerHTML = "";
+  if (sets.length === 0) {
+    setLists.innerHTML = `<p class="empty-list">No hay rutinas guardadas</p>`;
+    return;
+  }
   sets.forEach((set) => setLists.appendChild(exerciseSetUI(set)));
 };
 
 export const onHandleSubmitSetForm = (event) => {
   event.preventDefault();
-  console.log(event);
   saveExerciseSet(
     event.target["title"].value,
     event.target["description"].value,
-    []
+    exerciseList.getSelectedExercises()
   );
 };
 
@@ -185,10 +189,10 @@ export const changeMainPage = (new_page) => {
     // Show only the current page
     document
       .querySelector(`#page_${currentPage}`)
-      .classList.remove("active-main-container");
+      .classList.add("hidden-page");
     document
       .querySelector(`#page_${new_page}`)
-      .classList.add("active-main-container");
+      .classList.remove("hidden-page");
 
     // Update the current page
     currentPage = new_page;
