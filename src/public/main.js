@@ -9,6 +9,3 @@ setForm.addEventListener("submit", onHandleSubmitSetForm);
 document.querySelectorAll(".mobile-nav__item").forEach((item) => {
   item.addEventListener("pointerup", (event) => changeMainPage(event.target.dataset.page));
 });
-
-const exerciseList = new ExercisesList(document.getElementById("exercises-list"));
-exerciseList.render();

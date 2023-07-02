@@ -9,7 +9,10 @@ const PAGE_TYPES = Object.freeze({
 let currentPage = PAGE_TYPES.TRAINING_SETS;
 const setLists = document.querySelector("#sets-list");
 const trainingSetContainer = document.querySelector("#training-set__container");
-const [creatorNavItem, setsNavItem] = document.querySelectorAll(".training-set__nav-item");
+const [creatorNavItem, setsNavItem] = document.querySelectorAll(
+  ".training-set__nav-item"
+);
+const exerciseList = new ExercisesList(document.getElementById("exercises-list"));
 
 // Listeners for events
 creatorNavItem.addEventListener("click", () => setViewCreateSet());
