@@ -91,6 +91,28 @@ main {
 
 /*#endregion*/
 
+/*==================================SCROLL-BAR=====================================*/
+/*#region*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg-slider) rgb(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-bg-slider);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+/*#endregion*/
+
 /*===================== HEADER =====================*/
 /*#region*/
 header {
