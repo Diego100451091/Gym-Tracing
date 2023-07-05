@@ -1,7 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -56,6 +59,7 @@ html {
 body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
   position: relative;
   display: grid;
   grid-template-rows: 3rem calc(100% - 7rem) 4rem;
@@ -65,7 +69,7 @@ body {
 
 header,
 nav {
-  width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,12 +85,11 @@ main {
 .scroller {
   padding-top: 0.6rem;
   padding: 10px;
-  width: 100%;
   max-height: 100%;
   overflow-y: scroll;
   gap: 0.5rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 /*#endregion*/
@@ -268,13 +271,152 @@ nav {
 }
 
 #training-set__container > div {
-  width: 100%;
+  max-width: 100vw;
 }
 
-#exercises-list{
-    max-height: 100vh;
+#set-creator__container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
 
 /*#endregion*/
 
 
+/*________________ Exercises Items ______________*/
+.exercise-card{
+  width: 100%;
+
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  border: 3px solid var(--palette-black-transparency);
+
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+
+  user-select: none;
+  position: relative;
+}
+
+.exercise-card.active {
+  border-color: var(--primary-color);
+}
+
+.exercise-card .main-content{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;  
+}
+
+.exercise-card .image {
+  height: 6rem;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-card .image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.exercise-card .information{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding-top: .3rem;
+}
+
+.exercise-card .information > * {
+  font-size: .9rem;
+}
+
+.exercise-card .description-button{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0;
+  left: 0;
+
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size:0.8rem;
+  line-height: 0.9rem;
+  color: var(--palette-black-dark-transparency);
+}
+
+.exercise-card .description{
+  display: none;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  width: 95%;
+  font-size: .9rem;
+}
+
+.exercise-card .description.visible{
+  display: flex;
+}
+
+.exercise-card .checkbox{
+  appearance: none;
+  position: relative;
+  width: 1.5rem;
+  aspect-ratio: 1/2;
+  background-color: var(--color-bg-checkbox);
+  text-decoration: none;
+  border-radius: 10%;
+  outline: 2px solid var(--palette-black-dark-transparency);
+  outline-offset: 2px;
+  cursor: pointer;
+  transition: all .3s
+}
+
+.exercise-card .checkbox::before {
+  content: "✖";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--palette-white);
+  font-size: .8rem;
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--palette-black-dark-transparency);
+  border-radius: 10%;
+  top: 0;
+  left: 0;
+  transition: 0.2s;
+  transform-origin: center;
+}
+
+.exercise-card .checkbox:checked{
+  outline: 2px solid var(--color-bg-inner-checkbox);
+  background-color: var(--palette-light-orange);
+}
+
+.exercise-card .checkbox:checked::before {
+  top: 50%;
+  background-color: var(--primary-color);
+  content: "✔";
+}
+
+.exercise-card .checkbox:hover {
+  outline: 2px solid var(--color-bg-inner-checkbox);
+  outline-offset: 2px;
+}
