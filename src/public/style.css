@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  user-select: none;
 }
 
 :root {
@@ -54,11 +55,15 @@
 /*#region*/
 html {
   height: 100%;
+  touch-action: manipulation;
+  user-zoom: fixed;
+  -ms-content-zooming: none;
+  -ms-touch-action: manipulation;
 }
 
 body {
   height: 100%;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   position: relative;
   display: grid;
@@ -78,8 +83,9 @@ nav {
 }
 
 main {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  max-width: 100vw;
+  max-height: 100%;
 }
 
 .scroller {
