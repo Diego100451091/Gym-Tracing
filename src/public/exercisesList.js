@@ -52,23 +52,14 @@ export class ExercisesList {
         `;
 
     const descriptionButton = exUI.querySelector(".description-button");
-    descriptionButton.addEventListener("click", () => {
-      const description = exUI.querySelector(
-        ".description"
-      );
-      description.classList.toggle("visible");
-      if (descriptionButton.dataset.active === "false") {
-        descriptionButton.dataset.active = "true";
-        descriptionButton.innerHTML =
-          "Hide description <i class='fas fa-chevron-up'></i>";
-      } else {
-        descriptionButton.dataset.active = "false";
-        descriptionButton.innerHTML =
-          "Show description <i class='fas fa-chevron-down'></i>";
-      }
-    });
+    const description = exUI.querySelector(".description");
+    descriptionButton.addEventListener("click", () => this._onClickExerciseDescription(description,  descriptionButton));
 
     const checkbox = exUI.querySelector(".checkbox");
+    if (this.selectedExercises.includes(exercise.id)){
+      checkbox.checked = true;
+      exUI.classList.add("active");
+    }
     checkbox.addEventListener("click", () =>
       this._onClickExerciseCheckbox(exUI, checkbox)
     );
@@ -76,14 +67,27 @@ export class ExercisesList {
     return exUI;
   };
 
+  _onClickExerciseDescription = (description, descriptionButton) => {
+    description.classList.toggle("visible");
+    if (descriptionButton.dataset.active === "false") {
+      descriptionButton.dataset.active = "true";
+      descriptionButton.innerHTML =
+        "Hide description <i class='fas fa-chevron-up'></i>";
+    } else {
+      descriptionButton.dataset.active = "false";
+      descriptionButton.innerHTML =
+        "Show description <i class='fas fa-chevron-down'></i>";
+    }
+  };
+
   _onClickExerciseCheckbox = (exEl, checkboxEl) => {
     if (checkboxEl.checked) {
       this.selectedExercises.push(checkboxEl.dataset.id);
-      exEl.classList.add("active")
+      exEl.classList.add("active");
     } else {
       const index = this.selectedExercises.indexOf(checkboxEl.dataset.id);
       this.selectedExercises.splice(index, 1);
-      exEl.classList.remove("active")
+      exEl.classList.remove("active");
     }
     console.log(this.selectedExercises);
   };
