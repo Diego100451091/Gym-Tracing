@@ -5,12 +5,26 @@ export class ExercisesList {
     this.listContainer = listContainer;
     this.exercises = exercises;
     this.exercisesIds = Object.keys(this.exercises);
-    this.selectedCategories = [];
+    this.allCategories = this._getAllCategories();
+    this.selectedCategory = "All";
     this.selectedExercises = [];
 
     // Render the list of exercises when the object is created
     this.render();
   }
+
+  _getAllCategories = () => {
+    let categories = ["All"];
+    this.exercisesIds.forEach((id) => {
+      const exercise = this.getExercise(id);
+      const category =
+        exercise.categoria[0].toUpperCase() + exercise.categoria.slice(1);
+      if (!categories.includes(category)) {
+        categories.push(category);
+      }
+    });
+    return categories;
+  };
 
   _getExerciseUI = (exercise) => {
     const exUI = document.createElement("li");
@@ -74,15 +88,35 @@ export class ExercisesList {
   };
 
   _checkSelectedCategory = (id) => {
-    if (this.selectedCategories.length === 0) {
+    if (this.selectedCategory === "All") {
       return true;
     }
 
     const exercise = this.getExercise(id);
-    return this.selectedCategories.includes(exercise.categoria);
+    return (
+      this.selectedCategory.toLowerCase() === exercise.categoria.toLowerCase()
+    );
   };
 
-  render = () => {
+  renderFilter = () => {
+    const categoryFilter = document.getElementById("category-filter");
+    this.allCategories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.text = category;
+      categoryFilter.appendChild(option);
+    });
+
+    categoryFilter.addEventListener("change", () => {
+      const selectedCategory = Array.from(categoryFilter.options).filter(
+        (option) => option.selected
+      )[0].value;
+      this.selectedCategory = selectedCategory;
+      this.renderExercisesList();
+    });
+  };
+
+  renderExercisesList = () => {
     this.listContainer.innerHTML = "";
     this.exercisesIds.forEach((id) => {
       if (!this._checkSelectedCategory(id)) {

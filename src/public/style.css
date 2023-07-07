@@ -286,6 +286,25 @@ nav {
   flex-direction: column;
 }
 
+#category-filter{
+  width: 100px;
+  border-radius: 5px;
+  height: 1.5rem;
+  border: 1px solid var(--palette-black-transparency);
+}
+
+#category-filter.active{
+  border: 1px solid var(--primary-color);
+}
+
+#category-filter option:hover{
+  background-color: var(--primary-color);
+  color: var(--palette-white)
+}
+
+#exercises-list{
+  padding: 0 .3rem .8rem .8rem;
+}
 
 /*#endregion*/
 
