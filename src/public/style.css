@@ -263,7 +263,7 @@ nav {
   align-items: center;
   position: relative;
 
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-align: center;
 
@@ -288,7 +288,9 @@ nav {
 #training-set__container {
   width: 200%;
   height: calc(100% - 3rem);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
   transition: all 0.2;
 }
 
@@ -412,8 +414,9 @@ nav {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: .2rem;
+  gap: .3rem;
   padding-top: .3rem;
+  padding-bottom: 1.2rem;
 }
 
 .exercise-card .information > * {
@@ -454,7 +457,7 @@ nav {
 .exercise-card .checkbox{
   appearance: none;
   position: relative;
-  width: 1.5rem;
+  height: 30px;
   aspect-ratio: 1/2;
   background-color: var(--color-bg-checkbox);
   text-decoration: none;
@@ -462,16 +465,18 @@ nav {
   outline: 2px solid var(--palette-black-dark-transparency);
   outline-offset: 2px;
   cursor: pointer;
-  transition: all .3s
+  transition: all .3s;
+  margin-right: 2px;
 }
 
 .exercise-card .checkbox::before {
   content: "✖";
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--palette-white);
-  font-size: .8rem;
+  font-size: .6rem;
   position: absolute;
   width: 100%;
   aspect-ratio: 1;
@@ -497,4 +502,28 @@ nav {
 .exercise-card .checkbox:hover {
   outline: 2px solid var(--color-bg-inner-checkbox);
   outline-offset: 2px;
+}
+
+/* Handle size less than 400px width */
+@media (max-width: 400px) {
+  .exercise-card .description-button{
+    font-size: 0.7rem;
+  }
+
+  .exercise-card .information {
+    gap: 0;
+  }
+
+  .exercise-card .information > * {
+    font-size: .8rem;
+  }
+
+  .exercise-card .description{
+    font-size: .8rem;
+  }
+
+  .exercise-card .image {
+    height: 5rem;
+    bottom: .3rem;
+  }
 }
