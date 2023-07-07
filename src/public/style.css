@@ -146,6 +146,11 @@ header {
   box-shadow: 0 0 1rem rgba(128, 128, 128, 0.378);
 }
 
+header > img {
+  height: 60%;
+  aspect-ratio: 1;
+}
+
 /*#endregion*/
 
 /*===================== NAV =====================*/
