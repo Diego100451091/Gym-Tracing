@@ -13,7 +13,7 @@ const trainingSetContainer = document.querySelector("#training-set__container");
 const [creatorNavItem, setsNavItem] = document.querySelectorAll(
   ".training-set__nav-item"
 );
-const exerciseList = new ExercisesList(document.getElementById("exercises-list"));
+const exerciseList = new ExercisesList();
 
 // Listeners for events
 creatorNavItem.addEventListener("click", () => setViewCreateSet());
@@ -161,11 +161,20 @@ export const renderExerciseSets = (sets) => {
 
 export const onHandleSubmitSetForm = (event) => {
   event.preventDefault();
+  const title = event.target["title"].value;
+
+  if (title.length === 0){
+    alert("El nombre de la rutina no puede estar vacío");
+    return;
+  }
+
   saveExerciseSet(
-    event.target["title"].value,
+    title,
     event.target["description"].value,
     exerciseList.getSelectedExercises()
   );
+  event.target.reset();
+  exerciseList.reset();
 };
 
 /** Change the main page to the new page

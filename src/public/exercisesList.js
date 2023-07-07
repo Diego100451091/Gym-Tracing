@@ -1,8 +1,8 @@
 import exercises from "./exercises.js";
 
 export class ExercisesList {
-  constructor(listContainer) {
-    this.listContainer = listContainer;
+  constructor() {
+    this.listContainer = document.getElementById("exercises-list");
     this.exercises = exercises;
     this.exercisesIds = Object.keys(this.exercises);
     this.allCategories = this._getAllCategories();
@@ -10,7 +10,8 @@ export class ExercisesList {
     this.selectedExercises = [];
 
     // Render the list of exercises when the object is created
-    this.render();
+    this.renderFilter();
+    this.renderExercisesList();
   }
 
   _getAllCategories = () => {
@@ -35,7 +36,7 @@ export class ExercisesList {
                 <img src="${exercise.imagen}" alt="${exercise.nombre}">
             </div>
             <div class="information">
-                <h3 class="title">${exercise.nombre}</h3>
+                <h4 class="title">${exercise.nombre}</h3>
                 <p class="muscle">Main muscle: ${exercise.musculo}</p>
                 <p class="category">Category: ${exercise.categoria}</p>
             </div>
@@ -127,6 +128,11 @@ export class ExercisesList {
       this.listContainer.appendChild(exerciseCard);
     });
   };
+
+  reset = () => {
+    this.selectedExercises = [];
+    this.renderExercisesList();
+  }
 
   getExercises = () => {
     return this.exercises;
