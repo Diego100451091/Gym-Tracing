@@ -1,7 +1,7 @@
-import { loadExerciseSets } from "./sockets.js";
-import { renderExerciseSets, onHandleSubmitSetForm, changeMainPage } from "./ui.js";
-import { ExercisesList } from './exercisesList.js'
+import { loadExerciseSets, onNewExercise} from "./sockets.js";
+import { renderExerciseSets, onHandleSubmitSetForm, changeMainPage, appendExerciseSet} from "./ui.js";
 
+onNewExercise(appendExerciseSet);
 loadExerciseSets(renderExerciseSets);
 
 const setForm = document.querySelector("#new-set-form");

@@ -194,6 +194,16 @@ export const renderExerciseSets = (sets) => {
   sets.forEach((set) => setLists.appendChild(exerciseSetUI(set)));
 };
 
+/** Append a new exercise set to the list of sets element
+ * @param {object} set
+ * @param {string} set.name
+ * @param {string} set.description
+ * @param {string[]} set.exercises
+ */
+export const appendExerciseSet = (set) => {
+  setLists.appendChild(exerciseSetUI(set));
+};
+
 export const onHandleSubmitSetForm = (event) => {
   event.preventDefault();
   const title = event.target["title"].value;
