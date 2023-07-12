@@ -208,6 +208,9 @@ export const renderExerciseSets = (sets) => {
  * @param {string[]} set.exercises
  */
 export const appendExerciseSet = (set) => {
+  if (setLists.innerHTML.includes("No hay rutinas guardadas")) {
+    setLists.innerHTML = "";
+  }
   setLists.appendChild(exerciseSetUI(set));
 };
 
