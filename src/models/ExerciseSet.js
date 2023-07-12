@@ -8,7 +8,7 @@ const setSchema = new Schema({
   description: {
     type: String,
   },
-  exercices: {
+  exercises: {
     type: [String],
   },
 },{

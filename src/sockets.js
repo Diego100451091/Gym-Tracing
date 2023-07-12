@@ -15,7 +15,7 @@ export default (io) => {
       const newSet = new ExerciseSet({
         name: exerciseSet.title,
         description: exerciseSet.description,
-        exercices: exerciseSet.exercises,
+        exercises: exerciseSet.exercises,
       });
       const savedSet = await newSet.save();
       socket.emit("server:newExerciseSet", savedSet);
