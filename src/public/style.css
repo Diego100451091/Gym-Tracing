@@ -105,6 +105,13 @@ h3{
   transition: all 0.3s;
   background-color: var(--primary-color);
   color: var(--color-text-button);
+  box-shadow: 0 0 0.2rem rgba(128, 128, 128, 0.378);
+  border: 1px solid var(--primary-color);
+}
+
+.highlight-button:hover {
+  background-color: var(--palette-white);
+  color: var(--primary-color);
 }
 
 .scroller {
