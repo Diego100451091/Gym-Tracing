@@ -120,6 +120,11 @@ h3{
   gap: 0.5rem;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 .3rem .8rem .8rem;
+}
+
+.fas{
+  font-size: 1.7rem;
 }
 
 /*#endregion*/
@@ -307,7 +312,7 @@ nav {
   transition: all 0.2;
 }
 
-#set-creator__container{
+#training-set__container > div{
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -368,10 +373,6 @@ nav {
 #category-filter option:hover{
   background-color: var(--primary-color);
   color: var(--palette-white)
-}
-
-#exercises-list{
-  padding: 0 .3rem .8rem .8rem;
 }
 
 /*#endregion*/
@@ -446,9 +447,10 @@ nav {
   border: none;
   outline: none;
   cursor: pointer;
-  flex-direction: column;
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 6px;
 
   font-size:0.8rem;
   line-height: 0.9rem;
@@ -498,7 +500,7 @@ nav {
   width: 100%;
   aspect-ratio: 1;
   background-color: var(--palette-black-dark-transparency);
-  border-radius: 10%;
+  border-radius: 20%;
   top: 0;
   left: 0;
   transition: 0.2s;
