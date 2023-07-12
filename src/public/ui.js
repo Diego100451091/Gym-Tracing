@@ -1,4 +1,4 @@
-import { saveExerciseSet } from "./sockets.js";
+import { saveExerciseSet, deleteExerciseSet } from "./sockets.js";
 import { ExercisesList } from "./exercisesList.js";
 
 const PAGE_TYPES = Object.freeze({
@@ -175,6 +175,13 @@ const exerciseSetUI = (exerciseSet) => {
       ? "Hide exercises <i class='fas fa-chevron-up'></i>"
       : "Show exercises <i class='fas fa-chevron-down'></i>";
   });
+
+  // Add the event listener to the delete button
+  const deleteButton = setItem.querySelector(".delete-button");
+  deleteButton.addEventListener("click", () => {
+    deleteExerciseSet(exerciseSet._id);
+  })
+
 
   return setItem;
 };

@@ -19,7 +19,11 @@ export default (io) => {
       });
       const savedSet = await newSet.save();
       socket.emit("server:newExerciseSet", savedSet);
-      console.log("New exercise set: ", savedSet);
+    });
+
+    socket.on("client:deleteExerciseSet", async (id) => {
+      await ExerciseSet.findByIdAndDelete(id);
+      emitExerciseSets();
     });
   });
 };
