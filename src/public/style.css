@@ -509,6 +509,120 @@ nav {
   outline-offset: 2px;
 }
 
+#sets-list__container > h3 {
+  width: 100%;
+  padding: 1rem .8rem;
+}
+
+/*________________ Sets cards ______________*/
+.set-card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: .5rem;
+  border-radius: 0.6rem;
+  border: 3px solid var(--palette-black-transparency);
+}
+
+.set-card .information {
+  max-width: calc(100% - 100px);
+  display: flex;
+  gap: .2rem;
+  flex-direction: column;
+}
+
+.set-card .information > * {
+  text-align: justify;
+}
+
+.set-card .information .description {
+  font-size: .85rem;
+}
+
+.set-card .expand-button {
+  width: 100%;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  font-size:0.8rem;
+  line-height: 0.8rem;
+  color: var(--palette-black-dark-transparency);
+
+  margin-top: .5rem;
+}
+
+.set-card .expand-button > i {
+  font-size: .7rem;
+}
+
+.set-card .exercises-list {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.set-card .exercises-list > p{
+  font-size: .9rem;
+}
+
+.set-card .exercises-list.expanded{
+  max-height: max-content; 
+  margin-top: .5rem;
+}
+
+.set-card .exercises-list .exercise {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1rem 1fr 1rem;
+
+  padding: .3rem .8rem;
+  border-top: 2px solid var(--palette-black-transparency);
+  font-size: .75rem;
+}
+
+.set-card .exercises-list .exercise:nth-child(2){
+  border-top: none;
+}
+
+.set-card .exercises-list .exercise > * {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: inherit;
+}
+
+.set-card .exercises-list .exercise .information-button{
+  background: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: max-content;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.set-card .exercises-list .exercise .information-button > i{
+  color: var(--primary-color);
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+
+
 /* Handle size less than 400px width */
 @media (max-width: 400px) {
   .exercise-card .description-button{
