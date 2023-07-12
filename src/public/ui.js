@@ -119,6 +119,31 @@ document.body.addEventListener("touchend", function (event) {
   }
 });
 
+/** Return the UI element of a list of exercises
+ * @param {string[]} exercises
+ * @returns {HTMLElement}
+ */
+const exerciseSetListUI = (exercises) => {
+  let exercisesListString = "";
+
+  exercises.forEach((id, index) => {
+    const exercise = exerciseList.getExercise(id);
+    exercisesListString += `<div class="exercise">
+        <p class="index">${index+1}</p>
+        <p class="title">${exercise.nombre}</p>
+        <button class="information-button">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>`;
+  });
+
+  return `<div class="exercises-list">
+  <p>Exercises: </p>
+  ${exercisesListString}
+  </div>
+  `;
+};
+
 /** Return the UI element of an exercise set
  * @param {object} exerciseSet
  * @param {string} exerciseSet.name
@@ -128,18 +153,28 @@ document.body.addEventListener("touchend", function (event) {
  */
 const exerciseSetUI = (exerciseSet) => {
   const setItem = document.createElement("li");
-  setItem.classList.add("set-item");
+  setItem.classList.add("set-card");
 
   setItem.innerHTML = `
-    <h3 class="set-item__title">${exerciseSet.name}</h3>
-    <p class="set-item__description">${exerciseSet.description}</p>
-    ${
-      exerciseSet.exercices
-        ? `<button class="set-item__expand">Expand</button>`
-        : ""
-    }
-    <button class="set-item__delete">Delete</button>
+    <div class="information">
+      <h3 class="title">${exerciseSet.name}</h3>
+      <p class="description">Description: ${exerciseSet.description}</p>
+    </div>
+    <button class="delete-button highlight-button">Delete</button>
+    ${exerciseSetListUI(exerciseSet.exercises)}
+    <button class="expand-button">Show exercises <i class='fas fa-chevron-down'></i></button>
   `;
+
+  // Add the event listener to the expand button
+  const expandButton = setItem.querySelector(".expand-button");
+  const exercisesList = setItem.querySelector(".exercises-list");
+  expandButton.addEventListener("click", () => {
+    exercisesList.classList.toggle("expanded");
+    // Toggle between "Show exercises" and "Hide exercises"
+    expandButton.innerHTML = expandButton.innerHTML.includes("Show")
+      ? "Hide exercises <i class='fas fa-chevron-up'></i>"
+      : "Show exercises <i class='fas fa-chevron-down'></i>";
+  });
 
   return setItem;
 };
@@ -196,12 +231,8 @@ export const changeMainPage = (new_page) => {
       .classList.add("active-nav-item");
 
     // Show only the current page
-    document
-      .querySelector(`#page_${currentPage}`)
-      .classList.add("hidden-page");
-    document
-      .querySelector(`#page_${new_page}`)
-      .classList.remove("hidden-page");
+    document.querySelector(`#page_${currentPage}`).classList.add("hidden-page");
+    document.querySelector(`#page_${new_page}`).classList.remove("hidden-page");
 
     // Update the current page
     currentPage = new_page;
