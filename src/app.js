@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
+import sestsRoutes from "./routes/sets.routes.js";
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(express.json());
 app.use(cookieParser());
 // Set the routes for the API
 app.use("/api", authRoutes);
+app.use("/api", sestsRoutes);
 
 export default app;
