@@ -1,4 +1,4 @@
-import ExerciseSet from "./models/ExerciseSet";
+import ExerciseSet from "./models/ExerciseSet.js";
 
 export default (io) => {
   io.on("connection", (socket) => {

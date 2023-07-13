@@ -1,9 +1,9 @@
-import app from "./app";
+import app from "./app.js";
 import { Server as WebsocketServer } from "socket.io";
 import http from "http";
-import sockets from './sockets'
+import sockets from './sockets.js'
 
-import {connectDB} from './db';
+import {connectDB} from './db.js';
 
 connectDB();
 
