@@ -11,11 +11,11 @@ export const register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Create the new user and save it
-  const newUser = new User({
-    username,
-    email,
+    const newUser = new User({
+      username,
+      email,
       password: passwordHash,
-  });
+    });
     const userSaved = await newUser.save();
 
     // Create the web token
@@ -35,5 +35,34 @@ export const register = async (req, res) => {
     console.log("USER REGISTER ERROR:", error);
     res.status(500).json({ message: error.message });
   }
+};
 
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const userFound = await User.findOne({email});
+    if (!userFound) return res.status(400).json({message: "User not found"});
+
+    const isMatchPassword = await bcrypt.compare(password, userFound.password);
+
+    if(!isMatchPassword) return res.status(400).json({message: "Incorrect password"});
+
+    // Create the web token
+    const token = await createAccessToken({ id: userFound.id });
+
+    // Send the response to the user
+    res.cookie("token", token);
+    res.json({
+      id: userFound.id,
+      username: userFound.username,
+      email: userFound.email,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
+    });
+    console.log(`USER LOGIN SUCCESS: New user '${email}'`);
+  } catch (error) {
+    console.log("USER LOGIN ERROR:", error);
+    res.status(500).json({ message: error.message });
+  }
 };
