@@ -15,6 +15,7 @@ const setSchema = new Schema({
   },
   exercises: {
     type: [String],
+    required: true,
   },
 },{
     timestamps: true,
