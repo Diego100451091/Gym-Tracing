@@ -23,9 +23,4 @@ html, body{
 #root {
   height: 100%;
   width: 100vw;
-  overflow: hidden;
-  position: relative;
-  display: grid;
-  grid-template-rows: 3rem calc(100% - 7rem) 4rem;
-  grid-template-columns: 1fr;
 }
