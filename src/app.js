@@ -1,11 +1,17 @@
 import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import cors from 'cors';
 import authRoutes from "./routes/auth.routes.js";
 import sestsRoutes from "./routes/sets.routes.js";
 
 const app = express();
 
+
+// Enable CORS - Cross Origin Resource Sharing
+app.use(cors({
+    origin: ["http://localhost:5173"],
+}));
 // Show in console the request type and the route
 app.use(morgan("dev"));
 // Able convert API request body into JSON format
