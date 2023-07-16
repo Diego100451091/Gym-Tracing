@@ -7,7 +7,7 @@ import {
 } from "../controllers/sets.controller.js";
 import { authRequired } from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
-import { createSetSchema, findSetSchema } from "../schemas/set.schema.js";
+import { createSetSchema } from "../schemas/set.schema.js";
 
 const router = Router();
 
