@@ -2,7 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-¡
+
 * {
   padding: 0;
   margin: 0;
@@ -12,12 +12,28 @@
   user-select: none;
 }
 
-html, body{
-  height: 100%;
-  touch-action: manipulation;
-  user-zoom: fixed;
-  -ms-content-zooming: none;
-  -ms-touch-action: manipulation;
+
+/*==================================SCROLL-BAR=====================================*/
+/*#region*/
+* {
+  scrollbar-width: auto; 
+  scrollbar-color: #b65e11 rgb(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #b65e11;
+  border-radius: 4px;
+}
+/*#endregion*/
 }
 
 #root {
