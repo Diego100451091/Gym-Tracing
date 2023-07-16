@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
-import RegisterFormInput from "../components/RegisterFormInput.jsx";
-import { registerSchema } from "../schemas/auth.shemas.js";
 import { zodResolver } from "@hookform/resolvers/zod";
-import backgroundPattern from '../assets/background-pattern.webp';
-import orangeLogo from "../assets/logo-orange.svg"
+import { registerSchema } from "../schemas/auth.shemas.js";
+import { registerRequest } from '../api/auth.api.js';
+import RegisterFormInput from "../components/RegisterFormInput.jsx";
+
+import backgroundPattern from "../assets/background-pattern.webp";
+import orangeLogo from "../assets/logo-orange.svg";
 
 function RegisterPage() {
   const {
@@ -12,8 +14,9 @@ function RegisterPage() {
     formState: { errors, dirtyFields },
   } = useForm({ resolver: zodResolver(registerSchema) });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const response = await registerRequest(values);
+    console.log("Register request response:", response);
   };
 
   return (
@@ -28,12 +31,11 @@ function RegisterPage() {
 
       <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
         <div className="max-w-xl lg:max-w-3xl">
-          
           <a className="bloc" href="/">
             <span className="sr-only">Home</span>
             <img src={orangeLogo} className="h-8 sm:h-10"></img>
           </a>
-            
+
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black m-0 mt-6 ">
             Wellcome to Gym tracking!
           </h1>
@@ -92,8 +94,7 @@ function RegisterPage() {
             />
 
             <p className="col-span-6 text-sm text-gray-500">
-              By creating an account, you agree to our
-              {" "}
+              By creating an account, you agree to our{" "}
               <a
                 href="/privacy-policy"
                 className="text-sm text-gray-700 underline"
@@ -112,9 +113,11 @@ function RegisterPage() {
               </button>
 
               <p className="text-sm text-gray-500">
-                Already have an account?
-                {" "}
-                <a href="/login" className="text-sm text-primary-light underline">
+                Already have an account?{" "}
+                <a
+                  href="/login"
+                  className="text-sm text-primary-light underline"
+                >
                   Log in
                 </a>
                 .
