@@ -34,6 +34,76 @@
   border-radius: 4px;
 }
 /*#endregion*/
+
+
+.small-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.small-button:hover{
+  transform: scale(1.02);
+}
+
+.small-button:active{
+  transform: scale(0.98);
+}
+
+.medium-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.medium-button:hover {
+  transform: scale(1.02);
+}
+
+.medium-button:active {
+  transform: scale(0.98);
+}
+
+.large-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.large-button:hover {
+  transform: scale(1.02);
+}
+
+.large-button:active {
+  transform: scale(0.98);
+}
 }
 
 #root {
