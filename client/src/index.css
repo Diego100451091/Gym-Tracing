@@ -104,9 +104,29 @@
 .large-button:active {
   transform: scale(0.98);
 }
+
+.outline-error {
+  outline-color: #d32f2f;
 }
 
-#root {
-  height: 100%;
-  width: 100vw;
+.text-error {
+  color: #d32f2f;
 }
+
+.outline-success {
+  outline-color: #388e3c;
+}
+
+.text-success {
+  color: #388e3c;
+}
+
+.outline-neutral {
+  outline-color: #9e9e9e;
+}
+
+.text-neutral {
+  color: #9e9e9e;
+}
+
+
