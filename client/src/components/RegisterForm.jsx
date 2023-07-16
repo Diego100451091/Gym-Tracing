@@ -1,27 +1,28 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/auth.shemas.js";
 import { useAuth } from "../context/AuthContestx.jsx";
 import RegisterFormInput from "../components/RegisterFormInput.jsx";
 
-function RegisterForm( {children} ) {
+function RegisterForm({ children }) {
   const {
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm({ resolver: zodResolver(registerSchema) });
-  const { signup, user } = useAuth();
+  const { signup, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
-  console.log(user);
-
-  const onSubmit = async (values) => {
-    const response = await signup(values);
-  };
+  useEffect(() => {
+    if (isAuthenticated) navigate("/workouts");
+  }, [isAuthenticated]);
 
   return (
     <form
       action=""
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(signup)}
       className="mt-8 grid grid-cols-6 gap-6"
     >
       <RegisterFormInput
