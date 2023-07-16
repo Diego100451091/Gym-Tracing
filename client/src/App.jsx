@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContestx.jsx";
 import RegisterPage from './pages/RegisterPage.jsx';
 import LoginPage from "./pages/LoginPage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<h1 className="">Home page</h1>} />
@@ -17,7 +18,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 
