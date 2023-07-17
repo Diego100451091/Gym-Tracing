@@ -7,6 +7,11 @@ export const register = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
+    // Check if the user already exists
+    let existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(400).json(["The email is already in use"]);
+
     // Get the hash of the password to not save the original
     const passwordHash = await bcrypt.hash(password, 10);
 
