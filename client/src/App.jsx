@@ -1,21 +1,31 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
-import RegisterPage from './pages/RegisterPage.jsx';
+import RegisterPage from "./pages/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import WorkoutsPage from "./pages/WorkoutsPage.jsx";
+import ProgressPage from "./pages/ProgressPage.jsx";
+import SettingsPage from "./pages/SettingsPage.jsx";
+import WorkoutFormPage from "./pages/WorkoutFormPage.jsx";
+import ProtectedRoutes from './ProtectedRoutes.jsx';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<h1 className="">Home page</h1>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/workouts" element={<h1>Workouts</h1>} />
-          <Route path="/progress" element={<h1>Progress</h1>} />
-          <Route path="/settings" element={<h1>Settings</h1>} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/workouts" element={<WorkoutsPage />} />
+            <Route path="/create-workout" element={<WorkoutFormPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
