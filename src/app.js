@@ -11,6 +11,7 @@ const app = express();
 // Enable CORS - Cross Origin Resource Sharing
 app.use(cors({
     origin: ["http://localhost:5173"],
+    credentials: true
 }));
 // Show in console the request type and the route
 app.use(morgan("dev"));
