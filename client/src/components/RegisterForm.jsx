@@ -1,23 +1,16 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/auth.shemas.js";
-import { useAuth } from "../context/AuthContestx.jsx";
+import { useSignAuthentication } from '../hooks/auth.hooks.js';
 import RegisterFormInput from "../components/RegisterFormInput.jsx";
 
 function RegisterForm({ children }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors },
   } = useForm({ resolver: zodResolver(registerSchema) });
-  const { signup, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) navigate("/workouts");
-  }, [isAuthenticated]);
+  const { signup } = useSignAuthentication();
 
   return (
     <form
@@ -32,8 +25,7 @@ function RegisterForm({ children }) {
         size="col-span-6"
         registerHandler={register}
         placeholder="Ej.: Charles17"
-        errorsHandler={errors.username}
-        isUsed={dirtyFields.username}
+        errors={errors.username}
       />
 
       <RegisterFormInput
@@ -43,8 +35,7 @@ function RegisterForm({ children }) {
         size="col-span-6"
         registerHandler={register}
         placeholder="Ej.: charles@gmail.com"
-        errorsHandler={errors.email}
-        isUsed={dirtyFields.email}
+        errors={errors.email}
       />
 
       <RegisterFormInput
@@ -54,8 +45,7 @@ function RegisterForm({ children }) {
         size="col-span-6 sm:col-span-3"
         registerHandler={register}
         placeholder="******"
-        errorsHandler={errors.password}
-        isUsed={dirtyFields.password}
+        errors={errors.password}
       />
 
       <RegisterFormInput
@@ -65,8 +55,7 @@ function RegisterForm({ children }) {
         size="col-span-6 sm:col-span-3"
         registerHandler={register}
         placeholder="******"
-        errorsHandler={errors.passwordConfirmation}
-        isUsed={dirtyFields.passwordConfirmation}
+        errors={errors.passwordConfirmation}
       />
 
       {children[0]}
