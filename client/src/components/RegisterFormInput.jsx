@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useInputStatus } from '../hooks/formInput.hooks.js';
 
 function RegisterFormInput({
   id,
@@ -8,24 +8,9 @@ function RegisterFormInput({
   registerHandler,
   placeholder,
   requirements,
-  errorsHandler,
-  isUsed,
+  errors,
 }) {
-  const [status, setStatus] = useState("neutral");
-
-  const updateStatus = () => {
-    if (errorsHandler) {
-      setStatus("error");
-    } else {
-      if (!isUsed) {
-        setStatus("neutral");
-      } else {
-        setStatus("success");
-      }
-    }
-  }
-
-  useEffect(updateStatus, [errorsHandler]);
+  const { status } = useInputStatus(errors);
 
   return (
     <div className={`relative ${size}`}>
@@ -41,9 +26,9 @@ function RegisterFormInput({
         className={`w-full h-auto mt-4 outline outline-2 rounded-lg px-4 py-3 text-sm outline-${status}`}
         placeholder={placeholder}
       />
-      {errorsHandler && (
+      {errors && (
         <p className="text-error-light px-2.5 text-justify pt-1 text-xs">
-          ✖ {errorsHandler.message}
+          ✖ {errors.message}
         </p>
       )}
     </div>
