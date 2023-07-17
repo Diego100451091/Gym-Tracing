@@ -14,17 +14,16 @@ function RegisterPage() {
         />
       </aside>
 
-      <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-        <div className="max-w-xl lg:max-w-3xl">
-          <a className="bloc" href="/">
+      <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-6 xl:col-span-6">
+        <div className="max-w-xl lg:max-w-3xl lg:shadow-xl lg:p-10 lg:rounded-xl">
+          <a className="" href="/">
             <span className="sr-only">Home</span>
-            <img src={orangeLogo} className="h-8 sm:h-10"></img>
+            <img src={orangeLogo} className="h-8"></img>
           </a>
-
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black m-0 mt-6 ">
-            Wellcome to Gym tracking!
+          <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-black m-0 mt-4">
+            Wellcome to Gym tracking
           </h1>
-          <p className="mt-4 leading-relaxed text-justify text-slate-500">
+          <p className="mt-2 text-sm leading-normal text-justify text-slate-500">
             Start tracking your fitness journey with us and reach your goals
             faster. Join now for personalized workouts and analyze your
             progress. Let's get started!

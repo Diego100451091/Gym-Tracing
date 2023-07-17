@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/auth.shemas.js";
 import { useSignAuthentication } from '../hooks/auth.hooks.js';
-import RegisterFormInput from "../components/RegisterFormInput.jsx";
+import FormInput from "./FormInput.jsx";
 
 function RegisterForm({ children }) {
   const {
@@ -16,9 +16,9 @@ function RegisterForm({ children }) {
     <form
       action=""
       onSubmit={handleSubmit(signup)}
-      className="mt-8 grid grid-cols-6 gap-6"
+      className="mt-6 grid grid-cols-6 gap-6"
     >
-      <RegisterFormInput
+      <FormInput
         id="username"
         label="Username"
         type="text"
@@ -28,7 +28,7 @@ function RegisterForm({ children }) {
         errors={errors.username}
       />
 
-      <RegisterFormInput
+      <FormInput
         id="email"
         label="Email"
         type="email"
@@ -38,7 +38,7 @@ function RegisterForm({ children }) {
         errors={errors.email}
       />
 
-      <RegisterFormInput
+      <FormInput
         id="password"
         label="Password"
         type="password"
@@ -48,7 +48,7 @@ function RegisterForm({ children }) {
         errors={errors.password}
       />
 
-      <RegisterFormInput
+      <FormInput
         id="passwordConfirmation"
         label="Password confirmation"
         type="password"
@@ -65,7 +65,7 @@ function RegisterForm({ children }) {
           type="submit"
           className="medium-button bg-primary-light text-white w-max px-8"
         >
-          Create an account
+          CREATE AN ACCOUNT
         </button>
 
         {children[1]}
