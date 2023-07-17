@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createSetSchema = z.object({
+export const createWorkoutSchema = z.object({
   name: z
     .string({
       required_error: "Name is required",

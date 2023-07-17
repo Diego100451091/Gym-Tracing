@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const setSchema = new Schema({
+const workoutSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -21,4 +21,4 @@ const setSchema = new Schema({
     timestamps: true,
 });
 
-export default model("Set", setSchema);
+export default model("Workout", workoutSchema);

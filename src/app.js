@@ -3,7 +3,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 import authRoutes from "./routes/auth.routes.js";
-import sestsRoutes from "./routes/sets.routes.js";
+import workoutsRoutes from "./routes/workout.routes.js";
 
 const app = express();
 
@@ -21,6 +21,6 @@ app.use(express.json());
 app.use(cookieParser());
 // Set the routes for the API
 app.use("/api", authRoutes);
-app.use("/api", sestsRoutes);
+app.use("/api", workoutsRoutes);
 
 export default app;
