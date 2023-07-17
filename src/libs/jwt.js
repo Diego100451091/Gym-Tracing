@@ -21,3 +21,17 @@ export function createAccessToken(payload) {
     );
   });
 }
+
+/**
+ * Validate the access token
+ * @param {string} token - The access token
+ * @returns {Promise} The access token payload
+ */
+export function validateAccessToken(token) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, JWT_SECRET, (err, payload) => {
+      if (err) reject(err);
+      resolve(payload);
+    });
+  });
+}
