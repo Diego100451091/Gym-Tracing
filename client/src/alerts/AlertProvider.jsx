@@ -1,11 +1,30 @@
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
-export const thowSimpleError = (title, message) => {
-    Swal.fire({
-        title: title,
+export const throwSimpleError = (title, message) => {
+  Swal.fire({
+    title: title,
+    html: message,
+    icon: "error",
+    confirmButtonText: "Ok",
+    confirmButtonColor: "#b65e11",
+  });
+};
+
+export const throwTemporalError = (message) => {
+    temporalNotification.fire({
+        icon: "error",
         html: message,
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        confirmButtonColor: "#b65e11",
-    })
+    });
 }
+
+const temporalNotification = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
