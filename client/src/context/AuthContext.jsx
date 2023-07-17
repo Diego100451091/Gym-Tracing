@@ -14,15 +14,15 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState([]);
 
   const signup = async (user) => {
     try {
       const response = await registerRequest(user);
-      console.log(response.data);
       setUser(response.data);
       setIsAuthenticated(true);
     } catch (error) {
-      console.log("Signup error:", error);
+      setError(error.response.data);
     }
   };
 
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         isAuthenticated,
+        error,
         signup,
       }}
     >
