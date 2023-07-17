@@ -47,11 +47,11 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({email});
-    if (!userFound) return res.status(400).json({message: "User not found"});
+    if (!userFound) return res.status(400).json(["User not found"]);
 
     const isMatchPassword = await bcrypt.compare(password, userFound.password);
 
-    if(!isMatchPassword) return res.status(400).json({message: "Incorrect password"});
+    if(!isMatchPassword) return res.status(400).json(["Incorrect password"]);
 
     // Create the web token
     const token = await createAccessToken({ id: userFound.id });
@@ -85,7 +85,7 @@ export const logout = async (req, res) => {
 export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id);
 
-  if (!userFound) return res.status(400).json({message: "User not found"});
+  if (!userFound) return res.status(400).json(["User not found"]);
 
   return res.json({
     id: userFound._id,
