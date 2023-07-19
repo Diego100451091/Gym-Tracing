@@ -1,4 +1,4 @@
-import { useInputStatus } from '../hooks/formInput.hooks.js';
+import { useInputStatus } from "../hooks/formInput.hooks.js";
 
 function FormInput({
   id,
@@ -9,6 +9,7 @@ function FormInput({
   placeholder,
   requirements,
   errors,
+  isTextArea,
 }) {
   const { status } = useInputStatus(errors);
 
@@ -20,12 +21,22 @@ function FormInput({
       >
         {label}
       </label>
-      <input
-        type={type}
-        {...registerHandler(id, requirements)}
-        className={`w-full h-auto mt-3 outline outline-2 rounded-lg px-4 py-3 text-sm outline-${status}`}
-        placeholder={placeholder}
-      />
+      {isTextArea ? (
+        <textarea
+          rows="3"
+          {...registerHandler(id, requirements)}
+          className={`w-full h-auto resize-none mt-3 outline outline-2 rounded-lg px-4 py-3 text-sm outline-${status}`}
+          placeholder={placeholder}
+        />
+      ) : (
+        <input
+          type={type}
+          {...registerHandler(id, requirements)}
+          className={`w-full h-auto mt-3 outline outline-2 rounded-lg px-4 py-3 text-sm outline-${status}`}
+          placeholder={placeholder}
+        />
+      )}
+
       {errors && (
         <p className="text-error-light px-2.5 text-justify pt-1 text-xs">
           ✖ {errors.message}
