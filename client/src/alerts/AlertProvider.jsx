@@ -17,6 +17,13 @@ export const throwTemporalError = (message) => {
     });
 }
 
+export const throwTemporalSuccess = (message) => {
+  temporalNotification.fire({
+    icon: "success",
+    html: message,
+  });
+}
+
 const temporalNotification = Swal.mixin({
   toast: true,
   position: "top-end",
