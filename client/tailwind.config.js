@@ -27,6 +27,12 @@ export default {
         "black-transparency": "#2222221c",
         "white-transparency": "#fdfdfd1c",
       },
+      transitionDuration:{
+        '300': '0.3s',
+      },
+      gridTemplateColumns: {
+        'workoutPage': '265px 1fr', 
+      },
     },
   },
   plugins: [],

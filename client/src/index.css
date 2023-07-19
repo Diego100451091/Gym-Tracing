@@ -122,11 +122,11 @@
 }
 
 .outline-neutral {
-  outline-color: #9e9e9e;
+  outline-color: rgb(191, 196, 201);
 }
 
 .text-neutral {
-  color: #9e9e9e;
+  color: rgb(191, 196, 201);
 }
 
 .animate-loading{
