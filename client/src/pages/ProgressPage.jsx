@@ -1,8 +1,11 @@
+import Header from "../components/Header";
+
 function ProgressPage () {
     return (
-        <div>
+        <>  
+            <Header title="Progress" />
             <h1>Progress Page</h1>
-        </div>
+        </>
     )
 }
 

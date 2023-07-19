@@ -1,8 +1,11 @@
+import Header from "../components/Header";
+
 function SettingsPage () {
     return (
-        <div>
+        <>
+            <Header title="Settings" />
             <h1>Settings Page</h1>
-        </div>
+        </>
     )
 }
 

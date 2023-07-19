@@ -1,8 +1,11 @@
+import Header from "../components/Header";
+
 function WorkoutsPage () {
     return (
-        <div>
+        <>
+            <Header title="Workouts" />
             <h1>Workouts Page</h1>
-        </div>
+        </>
     )
 }
 
