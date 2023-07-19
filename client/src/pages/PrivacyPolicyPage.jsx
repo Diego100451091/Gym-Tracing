@@ -1,9 +1,9 @@
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 
 function PrivacyPolicyPage() {
   return (
     <>
-      <Header></Header>
+      <Header title="Privacy policy"/>
       <div className="mt-12 px-10 py-8">
         <h1 className="text-primary-light mt-0 mb-8 text-center">
           Privacy Policy
