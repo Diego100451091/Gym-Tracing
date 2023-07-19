@@ -134,6 +134,42 @@
 }
 
 
+.vertical-checkbox{
+  appearance: none;
+  position: relative;
+  height: 30px;
+  aspect-ratio: 1/2;
+  text-decoration: none;
+  border-radius: 10%;
+  outline: 2px solid;
+  outline-offset: 2px;
+  cursor: pointer;
+  transition: all .3s;
+  margin-right: 2px;
+}
+
+.vertical-checkbox::before {
+  content: "✖" !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: .6rem;
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 20%;
+  top: 0;
+  left: 0;
+  transition: 0.2s;
+  transform-origin: center;
+}
+
+.vertical-checkbox:checked::before {
+  top: 50%;
+  content: "✔" !important;
+}
+
 /* Loading animation that makes a logo flip up, left, down and right */
 @keyframes loading {
   0% {
