@@ -85,9 +85,9 @@ const Nav = () => {
         <ul className="normal-nav hidden lg:flex gap-6">
           {Object.values(authenticatedPages).map((page, index) => {
             return (
-              <li className="border-b-2 border-gray-400 px-3 hover:border-primary-light" key={index}>
+              <li className="border-b-2 border-gray-400 px-3 text-gray-400 hover:border-primary-light hover:text-primary-light" key={index}>
                 <button
-                  className="text-gray-400 text-sm font-medium hover:text-primary-light"
+                  className="text-sm font-medium "
                   onClick={() => navigate(page.path)}
                 >
                   {page.title}
