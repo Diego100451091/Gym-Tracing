@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { requestExercise } from "../api/exercise.api";
 import { useWorkoutContext } from '../context/WorkoutContext';
 import ActionButton from "../components/ActionButton";
+import { throwCustomImage } from '../alerts/AlertProvider';
 
 const WorkoutCard = ({ workout }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -90,7 +91,13 @@ const WorkoutCardExercise = ({ exerciseId, index }) => {
       <label className="text-sm">
         {exerciseData?.name[0].toUpperCase() + exerciseData?.name.slice(1)}
       </label>
-      <button>
+      <button onClick={() => throwCustomImage(exerciseData?.name[0].toUpperCase() + exerciseData?.name.slice(1), (
+        `<ul className="flex flex-col justify-between items-start">
+          <li><b>Body part: </b>${exerciseData.bodyPart}</li>
+          <li><b>Target muscle: </b>${exerciseData.target}</li>
+          <li><b>Equipment required: </b>${exerciseData.equipment}</li>
+        </ul>`          
+      ), exerciseData.gifUrl, exerciseData.name)}>
         <i className="fas fa-info-circle text-sm text-primary-light"></i>
       </button>
     </li>
