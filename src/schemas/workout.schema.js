@@ -6,7 +6,7 @@ export const createWorkoutSchema = z.object({
       required_error: "Name is required",
     })
     .min(3, "Description should have at least 3 character")
-    .max(64, "Name should have maximum length as 64 character"),
+    .max(32, "Name should have maximum length as 32 character"),
   description: z
     .string({
       required_error: "Description must be a string",
