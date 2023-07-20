@@ -11,18 +11,36 @@ export const throwSimpleError = (title, message) => {
 };
 
 export const throwTemporalError = (message) => {
-    temporalNotification.fire({
-        icon: "error",
-        html: message,
-    });
-}
+  temporalNotification.fire({
+    icon: "error",
+    html: message,
+  });
+};
 
 export const throwTemporalSuccess = (message) => {
   temporalNotification.fire({
     icon: "success",
     html: message,
   });
-}
+};
+
+export const throwCustomImage = (
+  title,
+  message,
+  imageUrl,
+  imageAlt,
+  width,
+  height
+) =>
+  Swal.fire({
+    title: title,
+    html: message,
+    imageUrl: imageUrl,
+    imageWidth: typeof width == "number" ? width : 200,
+    imageHeight: typeof height == "number" ? height : 200,
+    imageAlt: imageAlt,
+    confirmButtonColor: "#b65e11",
+  });
 
 const temporalNotification = Swal.mixin({
   toast: true,
