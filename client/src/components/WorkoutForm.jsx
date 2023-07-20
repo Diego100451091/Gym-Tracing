@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { workoutSchema } from "../schemas/workout.schema.js";
 import FormInput from "./FormInput.jsx";
 import { useExerciseContext } from "../context/ExerciseContext.jsx";
-import { useWorkoutContext } from '../context/WorkoutContext.jsx';
+import { useWorkoutContext } from "../context/WorkoutContext.jsx";
+import ActionButton from "./ActionButton.jsx";
 
 const WorkoutForm = () => {
   const {
@@ -16,10 +17,12 @@ const WorkoutForm = () => {
   const { saveWorkout } = useWorkoutContext();
 
   const onSubmit = (data) => {
-    const exercises = Object.values(selectedExercises).map(exercise => exercise.id);
-    console.log("Saving: ", data.name, data.description, exercises)
+    const exercises = Object.values(selectedExercises).map(
+      (exercise) => exercise.id
+    );
+    console.log("Saving: ", data.name, data.description, exercises);
     saveWorkout(data.name, data.description, exercises);
-  }
+  };
 
   return (
     <form
@@ -49,12 +52,9 @@ const WorkoutForm = () => {
       />
       <SelectedExercisesList />
       <div className="w-full flex items-center justify-center self-end">
-        <button
-          type="submit"
-          className="medium-button bg-primary-light text-white w-max px-8"
-        >
+        <ActionButton size="medium" customClass="w-max px-8">
           CREATE WORKOUT
-        </button>
+        </ActionButton>
       </div>
     </form>
   );

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../schemas/auth.shemas.js";
-import { useLoginAuthentication } from '../hooks/auth.hooks.js';
+import { useLoginAuthentication } from "../hooks/auth.hooks.js";
 import FormInput from "./FormInput.jsx";
+import ActionButton from "./ActionButton.jsx";
 
 function LoginForm({ children }) {
   const {
@@ -39,13 +40,9 @@ function LoginForm({ children }) {
       />
 
       <div className="col-span-6 flex items-center justify-center gap-4 flex-wrap">
-        <button
-          type="submit"
-          className="medium-button bg-primary-light text-white w-max px-8"
-        >
+        <ActionButton size="medium" customClass="w-max px-8">
           LOGIN
-        </button>
-
+        </ActionButton>
         {children}
       </div>
     </form>

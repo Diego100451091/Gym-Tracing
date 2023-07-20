@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo-orange.svg";
+import ActionButton from './ActionButton';
 
 function Header({ title }) {
   return (
@@ -66,12 +67,13 @@ const Nav = () => {
           {Object.values(unauthenticatedPages).map((page, index) => {
             return (
               <li className="" key={index}>
-                <button
-                  className="small-button text-white text-lg font-medium bg-primary-light"
+                <ActionButton 
+                  size="small"
+                  customClass="text-lg font-medium "
                   onClick={() => navigate(page.path)}
                 >
                   {page.title}
-                </button>
+                </ActionButton>
               </li>
             );
           })}
@@ -85,9 +87,11 @@ const Nav = () => {
         <ul className="normal-nav hidden lg:flex gap-6">
           {Object.values(authenticatedPages).map((page, index) => {
             return (
-              <li className="border-b-2 border-gray-400 px-3 text-gray-400 hover:border-primary-light hover:text-primary-light" key={index}>
+              <li
+                key={index}
+              >
                 <button
-                  className="text-sm font-medium "
+                  className="text-sm font-medium border-b-2 border-gray-400 px-3 text-gray-400 hover:border-primary-light hover:text-primary-light"
                   onClick={() => navigate(page.path)}
                 >
                   {page.title}
