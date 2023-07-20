@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import { requestCreateWorkout } from "../api/workout.api.js";
+import { createContext, useContext, useState, useEffect } from "react";
+import { requestCreateWorkout, requestWorkouts, requestDeleteWorkout } from "../api/workout.api.js";
 import {
   throwSimpleError,
   throwTemporalSuccess,
@@ -16,6 +16,23 @@ export const useWorkoutContext = () => {
 };
 
 export const WorkoutProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [workouts, setWorkouts] = useState([]);
+
+  useEffect(() => {
+    mountComponent();
+  }, []);
+
+  const mountComponent = async () => {
+    try {
+      const response = await requestWorkouts();
+      setWorkouts(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const saveWorkout = async (name, description, exercises) => {
     const workout = {
       name: name,
@@ -24,10 +41,9 @@ export const WorkoutProvider = ({ children }) => {
     };
     try {
       const response = await requestCreateWorkout(workout);
-      console.log("workout created", response);
       throwTemporalSuccess(`Workout '${name}' created succesfully`);
+      setWorkouts([...workouts, response.data]);
     } catch (error) {
-      console.log("error creating workout", error);
       throwSimpleError(
         "Error creating workout",
         `The workout '${name}' can't be created succesfully`
@@ -39,6 +55,8 @@ export const WorkoutProvider = ({ children }) => {
     <WorkoutContext.Provider
       value={{
         saveWorkout,
+        workouts,
+        isLoading,
       }}
     >
       {children}
