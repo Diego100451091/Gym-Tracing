@@ -8,6 +8,16 @@ export const getExercises = async (req, res) => {
   res.json(exercises);
 };
 
+export const getExercise = async (req, res) => {
+  const id = req.params.id;
+  const exercise = exercises.find((exercise) => exercise.id === id);
+  if (exercise) {
+    res.json(exercise);
+  } else {
+    res.status(404).json({ error: 'Exercise not found' });
+  }
+}
+
 export const getBodyParts = async (req, res) => {
   res.json(bodyParts)
 };
