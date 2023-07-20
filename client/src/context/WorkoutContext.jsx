@@ -51,10 +51,25 @@ export const WorkoutProvider = ({ children }) => {
     }
   };
 
+  const deleteWorkout = async (id) => {
+    try {
+      await requestDeleteWorkout(id);
+      const newWorkouts = workouts.filter((workout) => workout._id !== id);
+      setWorkouts(newWorkouts);
+      throwTemporalSuccess(`Workout deleted succesfully`);
+    } catch (error) {
+      throwSimpleError(
+        "Error deleting workout",
+        `The workout can't be deleted succesfully`
+      );
+    }
+  };
+  
   return (
     <WorkoutContext.Provider
       value={{
         saveWorkout,
+        deleteWorkout,
         workouts,
         isLoading,
       }}

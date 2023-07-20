@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { requestExercise } from "../api/exercise.api";
+import { useWorkoutContext } from '../context/WorkoutContext';
 import ActionButton from "../components/ActionButton";
 
 const WorkoutCard = ({ workout }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { deleteWorkout } = useWorkoutContext();
+  const navigate = useNavigate();
+
 
   const toggleIsExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -17,10 +22,10 @@ const WorkoutCard = ({ workout }) => {
       <div className="flex justify-between items-center gap-3 w-full">
         <h2 className="text-lg leading-6 font-bold h-min">{workout.name}</h2>
         <div className="flex justify-center items-center gap-3">
-          <ActionButton size="small" customClass="w-full">
+          <ActionButton size="small" customClass="w-full" onClick={() => deleteWorkout(workout._id)}>
             DELETE
           </ActionButton>
-          <ActionButton size="small" customClass="w-full">
+          <ActionButton size="small" customClass="w-full" onClick={() => navigate(`/new-training/${workout._id}`)}>
             START
           </ActionButton>
         </div>
