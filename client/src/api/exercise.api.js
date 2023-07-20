@@ -2,6 +2,8 @@ import axios from "./axios.js";
 
 export const requestExercises = () => axios.get("/exercises");
 
+export const requestExercise = (id) => axios.get(`/exercise/${id}`);
+
 export const requestBodyPartList = () =>
   axios.get("/exercises/bodyParts");
 
