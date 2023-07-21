@@ -4,10 +4,11 @@ import { ExercisesFilter } from "../components/ExercisesFilter.jsx";
 import ExerciseCard from "../components/ExerciseCard.jsx";
 import WorkoutForm from "../components/WorkoutForm.jsx";
 import { useExerciseContext } from "../context/ExerciseContext.jsx";
+import { Pagination } from "../components/Pagination.jsx";
 
 
 function WorkoutFormPage() {
-  const { filteredExercises: exercises, isLoading } = useExerciseContext();
+  const { showedExercises: exercises, isLoading } = useExerciseContext();
 
   return (
     <>
@@ -24,11 +25,13 @@ function WorkoutFormPage() {
           ) : (
             <>
               <ExercisesFilter />
+              <Pagination />
               <ul id="exercises-list" className="grid grid-cols-12 gap-2">
                 {exercises.map((exercise) => (
                   <ExerciseCard key={exercise.id} exerciseInfo={exercise} />
                 ))}
               </ul>
+              <Pagination />
             </>
           )}
         </main>

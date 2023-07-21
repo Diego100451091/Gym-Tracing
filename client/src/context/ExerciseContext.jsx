@@ -1,6 +1,9 @@
 import { createContext, useState, useContext, useEffect, useMemo } from "react";
 import { requestExercises, makeApiRequest } from "../api/exercise.api.js";
-import { useExerciseFilter } from "../hooks/exercise.hooks.js";
+import {
+  useExerciseFilter,
+  useListPagination,
+} from "../hooks/exercise.hooks.js";
 
 export const ExerciseContext = createContext();
 
@@ -18,10 +21,18 @@ export const ExerciseProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { filterCategoriesHandler, filterValue, resetFilter, checkFilter } =
     useExerciseFilter();
+  const { currentPage, changeMaximumPage, nextPage, previousPage, changePage, showedPages} =
+    useListPagination();
 
   const filteredExercises = useMemo(() => {
-    return exercises.filter((exercise) => checkFilter(exercise));
+    const newFilteredExercises = exercises.filter((exercise) => checkFilter(exercise))
+    changeMaximumPage(newFilteredExercises.length);
+    return newFilteredExercises;
   }, [exercises, filterValue]);
+
+  const showedExercises = useMemo(() => {
+    return filteredExercises.slice((currentPage-1)*50, currentPage*50);
+  }, [filteredExercises, currentPage])
 
   useEffect(() => {
     mountComponent();
@@ -30,7 +41,8 @@ export const ExerciseProvider = ({ children }) => {
   const mountComponent = async () => {
     const exercises = await makeApiRequest(requestExercises);
     if (exercises) {
-      setExercises(exercises.splice(0, 100));
+      changeMaximumPage(exercises.length)
+      setExercises(exercises);
       setIsLoading(false);
     }
   };
@@ -54,13 +66,19 @@ export const ExerciseProvider = ({ children }) => {
   return (
     <ExerciseContext.Provider
       value={{
-        filteredExercises,
+        showedExercises,
         toggleExerciseChecked,
         isExerciseSelected,
         resetFilter,
         isLoading,
         filterCategoriesHandler,
         selectedExercises,
+        currentPage, 
+        changeMaximumPage, 
+        nextPage, 
+        previousPage, 
+        changePage,
+        showedPages
       }}
     >
       {children}

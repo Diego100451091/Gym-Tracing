@@ -102,3 +102,70 @@ export const useExerciseFilter = () => {
     resetFilter,
   };
 };
+
+export const useListPagination = () => {
+  const itemsEachPage = 50;
+  const [maxPages, setMaxPages] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const getShowedPages = (page, maxPages) =>{
+    let showedPages = [];
+    let currPage;
+
+    if (maxPages-page < 2) {
+      currPage = maxPages - 2;
+    } else if (page < 3) {
+      currPage = 3;
+    } else {
+      currPage = page;
+    }
+
+    for (let i=-2; i<3; i++){
+        if ((currPage+i < 1) || (currPage+i > maxPages)){
+          continue;
+        }
+        showedPages.push(currPage+i);
+      }
+    
+    return showedPages;
+  }
+  const [showedPages, setShowedPages] = useState(getShowedPages(1, 5))
+
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const nextPage = () => {
+    if(currentPage < maxPages){
+      const newCurrentPage= currentPage + 1;
+      setCurrentPage(newCurrentPage);
+      setShowedPages(getShowedPages(newCurrentPage, maxPages)); //refresh the list of shown pages when changing
+    }
+  }
+
+  const previousPage = () =>{
+    console.log("Previous:", currentPage);
+    if(currentPage > 1){
+      const newCurrentPage= currentPage - 1;
+      setCurrentPage(newCurrentPage);
+      setShowedPages(getShowedPages(newCurrentPage, maxPages)); //refresh the list of shown pages when changing
+    }
+  }
+
+  const changeMaximumPage = (exercisesCount) => {
+    const newMaxPage = Math.ceil(exercisesCount / itemsEachPage)
+    setCurrentPage(1);
+    setMaxPages(newMaxPage);
+    setShowedPages(getShowedPages(1 , newMaxPage)); //refresh the list of shown pages when changing
+  }
+
+  return {
+    currentPage,
+    changePage,
+    nextPage,
+    previousPage,
+    changeMaximumPage,
+    showedPages,
+  };
+}
