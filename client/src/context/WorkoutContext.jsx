@@ -41,8 +41,8 @@ export const WorkoutProvider = ({ children }) => {
     };
     try {
       const response = await requestCreateWorkout(workout);
-      throwTemporalSuccess(`Workout '${name}' created succesfully`);
       setWorkouts([...workouts, response.data]);
+      throwTemporalSuccess(`Workout '${name}' created succesfully`);
     } catch (error) {
       throwSimpleError(
         "Error creating workout",
