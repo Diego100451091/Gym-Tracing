@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../schemas/auth.shemas.js";
-import { useLoginAuthentication } from "../hooks/auth.hooks.js";
+import { loginSchema } from "../../schemas/auth.shemas.js";
+import { useLoginAuthentication } from "../../hooks/auth.hooks.js";
 import FormInput from "./FormInput.jsx";
-import ActionButton from "./ActionButton.jsx";
+import ActionButton from "../ActionButton.jsx";
 
 function LoginForm({ children }) {
   const {

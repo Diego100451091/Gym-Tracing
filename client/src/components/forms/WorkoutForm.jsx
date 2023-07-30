@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { workoutSchema } from "../schemas/workout.schema.js";
+import { workoutSchema } from "../../schemas/workout.schema.js";
 import FormInput from "./FormInput.jsx";
-import { useExerciseContext } from "../context/ExerciseContext.jsx";
-import { useWorkoutContext } from "../context/WorkoutContext.jsx";
-import ActionButton from "./ActionButton.jsx";
+import { useExerciseContext } from "../../context/ExerciseContext.jsx";
+import { useWorkoutContext } from "../../context/WorkoutContext.jsx";
+import ActionButton from "../ActionButton.jsx";
 
 const WorkoutForm = () => {
   const {

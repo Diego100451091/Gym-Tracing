@@ -1,4 +1,4 @@
-import { useExerciseContext } from '../context/ExerciseContext';
+import { useExerciseContext } from '../../context/ExerciseContext';
 
 const ExerciseCard = ({ exerciseInfo }) => {
   const { id, name, bodyPart, equipment, target, gifUrl } = exerciseInfo;

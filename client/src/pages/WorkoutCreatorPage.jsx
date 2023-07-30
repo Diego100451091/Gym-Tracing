@@ -1,8 +1,8 @@
 import Header from "../components/Header.jsx";
 import Loading from "../components/Loading.jsx";
 import { ExercisesFilter } from "../components/ExercisesFilter.jsx";
-import ExerciseCard from "../components/ExerciseCard.jsx";
-import WorkoutForm from "../components/WorkoutForm.jsx";
+import ExerciseCard from "../components/cards/ExerciseCard.jsx";
+import WorkoutForm from "../components/forms/WorkoutForm.jsx";
 import { useExerciseContext } from "../context/ExerciseContext.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 

@@ -1,4 +1,4 @@
-import { useInputStatus } from "../hooks/formInput.hooks.js";
+import { useInputStatus } from "../../hooks/formInput.hooks.js";
 
 function FormInput({
   id,

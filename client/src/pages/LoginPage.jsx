@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm.jsx";
+import LoginForm from "../components/forms/LoginForm.jsx";
 
 import orangeLogo from '../assets/logo-orange.svg';
 import backgroundPattern from "../assets/background-pattern.webp";

@@ -1,4 +1,4 @@
-import RegisterForm from "../components/RegisterForm.jsx";
+import RegisterForm from "../components/forms/RegisterForm.jsx";
 
 import backgroundPattern from "../assets/background-pattern.webp";
 import orangeLogo from "../assets/logo-orange.svg";

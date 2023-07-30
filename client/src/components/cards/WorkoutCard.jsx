@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { requestExercise } from "../api/exercise.api";
-import { useWorkoutContext } from '../context/WorkoutContext';
-import ActionButton from "../components/ActionButton";
-import { throwCustomImage } from '../alerts/AlertProvider';
+import { requestExercise } from "../../api/exercise.api";
+import { useWorkoutContext } from '../../context/WorkoutContext';
+import ActionButton from "../ActionButton";
+import { throwCustomImage } from '../../alerts/AlertProvider';
 
 const WorkoutCard = ({ workout }) => {
   const [isExpanded, setIsExpanded] = useState(false);
