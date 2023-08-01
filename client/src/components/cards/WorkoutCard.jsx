@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { requestExercise } from "../../api/exercise.api";
-import { useWorkoutContext } from '../../context/WorkoutContext';
+import { useWorkoutContext } from "../../context/WorkoutContext";
 import ActionButton from "../ActionButton";
-import { throwCustomImage } from '../../alerts/AlertProvider';
+import { throwCustomImage } from "../../alerts/AlertProvider";
 
 const WorkoutCard = ({ workout }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { deleteWorkout } = useWorkoutContext();
   const navigate = useNavigate();
-
 
   const toggleIsExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -23,10 +22,18 @@ const WorkoutCard = ({ workout }) => {
       <div className="flex justify-between items-center gap-3 w-full">
         <h2 className="text-lg leading-6 font-bold h-min">{workout.name}</h2>
         <div className="flex justify-center items-center gap-3">
-          <ActionButton size="small" customClass="w-full" onClick={() => deleteWorkout(workout._id)}>
+          <ActionButton
+            size="small"
+            customClass="w-full"
+            onClick={() => deleteWorkout(workout._id)}
+          >
             DELETE
           </ActionButton>
-          <ActionButton size="small" customClass="w-full" onClick={() => navigate(`/new-training/${workout._id}`)}>
+          <ActionButton
+            size="small"
+            customClass="w-full"
+            onClick={() => navigate(`/new-training/${workout._id}`)}
+          >
             START
           </ActionButton>
         </div>
@@ -35,7 +42,19 @@ const WorkoutCard = ({ workout }) => {
         <label className="text-sm font-semibold">Description: </label>
         {workout.description}
       </p>
-      <ul
+      {isExpanded ? (
+        <ul className="w-full flex flex-col overflow-hidden sm:col-span-full">
+          <li className="text-sm font-semibold">Exercises:</li>
+          {workout.exercises.map((exerciseId, index) => (
+            <WorkoutCardExercise
+              key={index}
+              exerciseId={exerciseId}
+              index={index + 1}
+            />
+          ))}
+        </ul>
+      ) : null}
+      {/* <ul
         className={
           "w-full flex flex-col overflow-hidden sm:col-span-full " +
           (!isExpanded ? "hidden" : "")
@@ -49,7 +68,7 @@ const WorkoutCard = ({ workout }) => {
             index={index + 1}
           />
         ))}
-      </ul>
+      </ul> */}
       <button
         onClick={toggleIsExpanded}
         className="w-full cursor-pointer flex justify-center items-center gap-1 text-xs text-slate-400"
@@ -91,13 +110,20 @@ const WorkoutCardExercise = ({ exerciseId, index }) => {
       <label className="text-sm">
         {exerciseData?.name[0].toUpperCase() + exerciseData?.name.slice(1)}
       </label>
-      <button onClick={() => throwCustomImage(exerciseData?.name[0].toUpperCase() + exerciseData?.name.slice(1), (
-        `<ul className="flex flex-col justify-between items-start">
+      <button
+        onClick={() =>
+          throwCustomImage(
+            exerciseData?.name[0].toUpperCase() + exerciseData?.name.slice(1),
+            `<ul className="flex flex-col justify-between items-start">
           <li><b>Body part: </b>${exerciseData.bodyPart}</li>
           <li><b>Target muscle: </b>${exerciseData.target}</li>
           <li><b>Equipment required: </b>${exerciseData.equipment}</li>
-        </ul>`          
-      ), exerciseData.gifUrl, exerciseData.name)}>
+        </ul>`,
+            exerciseData.gifUrl,
+            exerciseData.name
+          )
+        }
+      >
         <i className="fas fa-info-circle text-sm text-primary-light"></i>
       </button>
     </li>
