@@ -4,6 +4,7 @@ import {
   useExerciseFilter,
   useListPagination,
 } from "../hooks/exercise.hooks.js";
+import { useAuth } from './AuthContext.jsx';
 
 export const ExerciseContext = createContext();
 
@@ -19,6 +20,7 @@ export const ExerciseProvider = ({ children }) => {
   const [exercises, setExercises] = useState([]);
   const [selectedExercises, setSelectedExercises] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated } = useAuth();
   const { filterCategoriesHandler, filterValue, resetFilter, checkFilter } =
     useExerciseFilter();
   const { currentPage, changeMaximumPage, nextPage, previousPage, changePage, showedPages} =
@@ -35,8 +37,8 @@ export const ExerciseProvider = ({ children }) => {
   }, [filteredExercises, currentPage])
 
   useEffect(() => {
-    mountComponent();
-  }, []);
+    if (isLoading && isAuthenticated) mountComponent();
+  }, [isAuthenticated]);
 
   const mountComponent = async () => {
     const exercises = await makeApiRequest(requestExercises);

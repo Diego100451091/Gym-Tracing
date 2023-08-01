@@ -4,6 +4,7 @@ import {
   throwSimpleError,
   throwTemporalSuccess,
 } from "../alerts/AlertProvider.jsx";
+import { useAuth } from './AuthContext.jsx';
 
 const WorkoutContext = createContext();
 
@@ -18,11 +19,12 @@ export const useWorkoutContext = () => {
 export const WorkoutProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [workouts, setWorkouts] = useState([]);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
-    mountComponent();
-  }, []);
-
+    if (isLoading && isAuthenticated) mountComponent();  
+  }, [isAuthenticated]);
+  
   const mountComponent = async () => {
     try {
       const response = await requestWorkouts();
