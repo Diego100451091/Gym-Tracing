@@ -51,7 +51,6 @@ export const Pagination = () => {
 };
 
 const PaginationButton = ({ onClick, highlighted, children }) => {
-  console.log(highlighted);
   return (
     <li>
       <button
