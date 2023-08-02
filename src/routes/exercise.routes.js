@@ -15,11 +15,11 @@ router.get("/exercises", authRequired, getExercises);
 
 router.get("/exercise/:id", authRequired, getExercise);
 
-router.get("/exercises/bodyParts/", authRequired, getBodyParts);
+router.get("/exercises/bodyParts/", getBodyParts);
 
-router.get("/exercises/targetMuscles/",authRequired, getTargetMuscles);
+router.get("/exercises/targetMuscles/", getTargetMuscles);
 
-router.get("/exercises/equipments/", authRequired, getEquipments);
+router.get("/exercises/equipments/", getEquipments);
 
 router.get("/exercises/gifs/:gifId", getExerciseGif);
 
