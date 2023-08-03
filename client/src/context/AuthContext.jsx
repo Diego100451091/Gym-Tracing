@@ -54,6 +54,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    Cookies.remove("token");
+    resetUser();
+  }
+
   useEffect(() => {
     if (error.length > 0) {
       const timer = setTimeout(() => {
@@ -90,6 +95,7 @@ export const AuthProvider = ({ children }) => {
         error,
         signup,
         login,
+        logout,
         isLoading
       }}
     >
