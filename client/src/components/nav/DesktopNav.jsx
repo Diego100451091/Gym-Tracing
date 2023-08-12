@@ -24,7 +24,7 @@ const DesktopNav = ({ authenticatedPages }) => {
         </ul>
       </nav>
       
-      <div className="relative h-full aspect-square flex justify-center items-center">
+      <section className="relative h-full aspect-square flex justify-center items-center">
         <button
           onClick={openProfileMenu}
           className="flex items-center justify-center h-[60%] aspect-square rounded-full bg-white shadow-md hover:shadow-lg"
@@ -40,10 +40,10 @@ const DesktopNav = ({ authenticatedPages }) => {
           )}
         </button>
 
-        <div
+        <nav
           className={
             "absolute top-full right-0 w-48 hover:translate-x-0 bg-white py-4 px-8 shadow-md rounded-b-md flex flex-col gap-3 transition-all " +
-            (isOpen ? "translate-x-0" : "translate-x-52")
+            (isOpen ? "translate-x-0" : "translate-x-[150%]")
           }
         >
           <div className="flex flex-col gap-2">
@@ -84,8 +84,8 @@ const DesktopNav = ({ authenticatedPages }) => {
             ></i>
             Logout
           </ActionButton>
-        </div>
-      </div>
+        </nav>
+      </section>
     </>
   );
 };
