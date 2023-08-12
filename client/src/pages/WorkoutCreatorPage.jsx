@@ -13,7 +13,7 @@ function WorkoutFormPage() {
   return (
     <>
       <Header title={"Workout creator"} />
-      <div className="mt-12 py-4 flex flex-col gap-3 bg-white px-8 lg:grid lg:grid-cols-workoutPage lg:gap-x-5">
+      <div className="mt-12 py-4 flex flex-col gap-3 bg-white px-6 lg:grid lg:grid-cols-workoutPage lg:gap-x-5">
         <aside className="lg:fixed lg:w-[265px] border-b-2 pb-4 lg:border-b-0 lg:pb-0">
           <WorkoutForm />
         </aside>
