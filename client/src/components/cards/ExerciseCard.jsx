@@ -10,17 +10,18 @@ const ExerciseCard = ({ exerciseInfo }) => {
   return (
     <li
       className={
-        "w-full p-2 border-[2px] border-gray-300 rounded-xl flex justify-between items-center gap-4 col-span-12 md:col-span-6 lg:col-span-12 xl:col-span-6 " +
+        "cursor-pointer w-full p-2 border-[2px] border-gray-300 rounded-xl flex flex-col md:flex-row justify-between items-center gap-4 col-span-12 xs:col-span-6 lt md:col-span-6 lg:col-span-12 xl:col-span-6 " +
         (isSelected(id) ? "border-primary-light bg-gradient-to-t from-[#ffe4cd7d] to-white" : "")
       }
+      onClick={() => toggleCheck(id, name)}
     >
       <img
-        className="h-16 aspect-square sm:h-24 object-cover rounded-lg"
+        className="h-36 aspect-square md:h-24 object-cover rounded-lg"
         src={`${gifUrl}`}
         alt={name}
       />
-      <div className="w-full h-full flex flex-col gap-1">
-        <p className="font-bold">{name[0].toUpperCase() + name.substring(1)}</p>
+      <div className="w-full md:h-full flex flex-col gap-1">
+        <p className="font-bold text-base">{name[0].toUpperCase() + name.substring(1)}</p>
         <p className="text-sm">
           - Body part: {bodyPart[0].toUpperCase() + bodyPart.substring(1)}
         </p>
@@ -33,7 +34,7 @@ const ExerciseCard = ({ exerciseInfo }) => {
       </div>
       <input
         type="checkbox"
-        className="vertical-checkbox text-white !outline-gray-400 before:bg-gray-400 checked:bg-orange-300  checked:before:bg-primary-light checked:!outline-primary-light"
+        className="slider-checkbox md:rotate-90 md:before:-rotate-90 md:h-4 text-white !outline-gray-400 before:bg-gray-400 checked:bg-orange-300  checked:before:bg-primary-light checked:!outline-primary-light"
         checked={isSelected(id)}
         onChange={() => toggleCheck(id, name)}
         data-id={id}

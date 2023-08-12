@@ -138,22 +138,21 @@
   animation: loading 3s infinite;
 }
 
-
-.vertical-checkbox{
+.slider-checkbox{
   appearance: none;
   position: relative;
-  height: 30px;
-  aspect-ratio: 1/2;
+  height: 15px;
+  aspect-ratio: 2/1;
   text-decoration: none;
   border-radius: 10%;
   outline: 2px solid;
   outline-offset: 2px;
   cursor: pointer;
   transition: all .3s;
-  margin-right: 2px;
+  margin: 4px;
 }
 
-.vertical-checkbox::before {
+.slider-checkbox::before {
   content: "✖" !important;
   display: flex;
   flex-direction: column;
@@ -161,7 +160,7 @@
   align-items: center;
   font-size: .6rem;
   position: absolute;
-  width: 100%;
+  height: 100%;
   aspect-ratio: 1;
   border-radius: 20%;
   top: 0;
@@ -170,8 +169,8 @@
   transform-origin: center;
 }
 
-.vertical-checkbox:checked::before {
-  top: 50%;
+.slider-checkbox:checked::before {
+  left: 50%;
   content: "✔" !important;
 }
 

@@ -18,7 +18,7 @@ function WorkoutFormPage() {
           <WorkoutForm />
         </aside>
 
-        <main className="flex flex-col gap-2 lg:col-span-1 lg:col-start-2 lg:border-l-2 lg:pl-5">
+        <main className="flex flex-col gap-3 lg:col-span-1 lg:col-start-2 lg:border-l-2 lg:pl-5">
           <h3 className="font-bold text-lg">Exercise selector</h3>
           {isLoading ? (
             <Loading />

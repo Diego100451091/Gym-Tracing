@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        'xs': '520px', // Añade la escala xs a partir de 520px
+      },
       colors: {
         "primary-light": "#b65e11",
         "primary-dark": "#ea9852",
