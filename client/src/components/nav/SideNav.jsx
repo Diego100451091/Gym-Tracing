@@ -5,7 +5,6 @@ import NavLink from "./NavLink";
 
 const SideNav = ({ authenticatedPages }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { logout, user } = useAuth();
 
   const toggleIsOpen = () => {
     setIsOpen((open) => !open);
@@ -32,64 +31,67 @@ const SideNav = ({ authenticatedPages }) => {
           (isOpen ? "translate-x-0" : "-translate-x-[150%]")
         }
       >
-        
         <ul className={"flex flex-col gap-3 pl-3"}>
           {Object.values(authenticatedPages).map((page, index) => {
             return <NavLink type="mobile" page={page} key={index} />;
           })}
         </ul>
 
-        <div className="flex flex-col gap-3 border-t-2 border-gray-200 pt-4">
-          <div className="w-full flex gap-5 items-center">
-            {user.image ? (
-              <img
-                src={user.image}
-                alt="User avatar"
-                className="w-10 h-10 rounded-full"
-              />
-            ) : (
-              <i className="fas fa-user-circle text-3xl text-gray-400"></i>
-            )}
-            <label className="text-xs text-gray-400 font-medium">
-              {user.username}
-              <br />
-              {user.email}
-            </label>
-          </div>
-
-          <ul className="flex flex-col gap-3 pl-3">
-            <NavLink
-              type="mobile"
-              page={{
-                path: "/profile",
-                title: "Profile",
-                icon: "fa-regular fa-user",
-              }}
-            />
-
-            <NavLink
-              type="mobile"
-              page={{
-                path: "/settings",
-                title: "Settings",
-                icon: "fa-regular fa-cog",
-              }}
-            />
-          </ul>
-
-          <ActionButton
-            size="small"
-            customClass="text-sm w-full"
-            onClick={logout}
-          >
-            <i
-              className="
-                fas fa-sign-out-alt"
-            ></i>
-            Logout
-          </ActionButton>
-        </div>
+        <ProfileNavSection />
       </nav>
+    </div>
+  );
+};
+
+const ProfileNavSection = () => {
+  const { logout, user } = useAuth();
+
+  return (
+    <div className="flex flex-col gap-3 border-t-2 border-gray-200 pt-4 overflow-x-clip">
+      <div className="max-w-full flex gap-3 items-center">
+        {user.image ? (
+          <img
+            src={user.image}
+            alt="User avatar"
+            className="w-10 h-10 rounded-full"
+          />
+        ) : (
+          <i className="fas fa-user-circle text-3xl text-gray-400"></i>
+        )}
+        <label className="text-xs text-gray-400 font-medium max-w-full">
+          {user.username}
+          <br />
+          {user.email}
+        </label>
+      </div>
+
+      <ul className="flex flex-col gap-3 pl-3">
+        <NavLink
+          type="mobile"
+          page={{
+            path: "/profile",
+            title: "Profile",
+            icon: "fa-regular fa-user",
+          }}
+        />
+
+        <NavLink
+          type="mobile"
+          page={{
+            path: "/settings",
+            title: "Settings",
+            icon: "fa-regular fa-cog",
+          }}
+        />
+      </ul>
+
+      <ActionButton size="small" customClass="text-sm w-full" onClick={logout}>
+        <i
+          className="
+                fas fa-sign-out-alt"
+        ></i>
+        Logout
+      </ActionButton>
     </div>
   );
 };
