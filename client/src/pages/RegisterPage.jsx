@@ -1,6 +1,6 @@
 import RegisterForm from "../components/forms/RegisterForm.jsx";
 
-import backgroundPattern from "../assets/background-pattern.webp";
+import backgroundPattern from "../assets/background-pattern.svg"
 import orangeLogo from "../assets/logo-orange.svg";
 
 function RegisterPage() {

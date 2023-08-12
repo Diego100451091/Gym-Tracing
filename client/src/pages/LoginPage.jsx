@@ -1,12 +1,12 @@
 import LoginForm from "../components/forms/LoginForm.jsx";
 
 import orangeLogo from '../assets/logo-orange.svg';
-import backgroundPattern from "../assets/background-pattern.webp";
+import backgroundPattern from "../assets/background-pattern.svg"
 
 function LoginPage() {
   return (
     <section className="lg:grid lg:min-h-screen lg:grid-cols-12 bg-white ">
-      <aside className="bg-primary-light relative block h-16 lg:col-span-5 lg:h-full xl:col-span-6">
+      <aside className="bg-primary-light relative block h-24 lg:col-span-5 lg:h-full xl:col-span-6">
         <img
           alt="Pattern"
           src={backgroundPattern}
