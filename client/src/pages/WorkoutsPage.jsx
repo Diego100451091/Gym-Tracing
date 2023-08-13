@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import WorkoutsList from '../components/WorkoutsList';
+import Header from "../components/sections/Header";
+import WorkoutsList from '../components/sections/WorkoutsList';
 
 function WorkoutsPage() {
   return (

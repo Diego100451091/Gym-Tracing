@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useExerciseContext } from "../context/ExerciseContext.jsx";
+import { useExerciseContext } from "../../context/ExerciseContext.jsx";
 
 export const ExercisesFilter = () => {
   const [isOpen, setIsOpen] = useState(false);

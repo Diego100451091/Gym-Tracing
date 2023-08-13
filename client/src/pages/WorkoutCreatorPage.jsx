@@ -1,11 +1,10 @@
-import Header from "../components/Header.jsx";
+import Header from "../components/sections/Header";
 import Loading from "../components/Loading.jsx";
-import { ExercisesFilter } from "../components/ExercisesFilter.jsx";
+import { ExercisesFilter } from "../components/sections/ExercisesFilter.jsx";
 import ExerciseCard from "../components/cards/ExerciseCard.jsx";
 import WorkoutForm from "../components/forms/WorkoutForm.jsx";
 import { useExerciseContext } from "../context/ExerciseContext.jsx";
 import { Pagination } from "../components/Pagination.jsx";
-
 
 function WorkoutFormPage() {
   const { showedExercises: exercises, isLoading } = useExerciseContext();

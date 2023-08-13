@@ -1,5 +1,5 @@
-import logo from "../assets/logo-orange.svg";
-import Nav from "./nav/Nav";
+import logo from "../../assets/logo-orange.svg";
+import Nav from "../nav/Nav";
 
 function Header({ title }) {
   return (

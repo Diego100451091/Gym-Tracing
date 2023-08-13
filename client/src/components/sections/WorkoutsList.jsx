@@ -1,6 +1,6 @@
-import Loading from "./Loading";
-import { useWorkoutContext } from "../context/WorkoutContext";
-import WorkoutCard from "./cards/WorkoutCard";
+import Loading from "../Loading";
+import { useWorkoutContext } from "../../context/WorkoutContext";
+import WorkoutCard from "../cards/WorkoutCard";
 
 const WorkoutsList = () => {
   const { workouts, isLoading } = useWorkoutContext();
