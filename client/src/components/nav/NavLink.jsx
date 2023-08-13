@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const NavLink = ({ page, type }) => {
   const location = useLocation();
-  const active = location.pathname === page.path;
+  const active = location.pathname.startsWith(page.path);
   const navigate = useNavigate();
 
   const styles = {
