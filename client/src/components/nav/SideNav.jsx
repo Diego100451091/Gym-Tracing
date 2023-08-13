@@ -24,6 +24,7 @@ const SideNav = ({ authenticatedPages }) => {
           "absolute top-12 left-0 w-full h-screen backdrop-blur-sm bg-gray-800 bg-opacity-40 z-[-1] " +
           (isOpen ? "" : "hidden")
         }
+        onClick={toggleIsOpen}
       ></div>
       <nav
         className={
