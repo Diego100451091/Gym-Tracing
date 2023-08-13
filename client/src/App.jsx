@@ -11,6 +11,7 @@ import SettingsPage from "./pages/SettingsPage.jsx";
 import WorkoutCreatorPage from "./pages/WorkoutCreatorPage.jsx";
 import NewTrainingPage from './pages/NewTrainingPage.jsx';
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
+import Profile from './pages/Profile.jsx';
 import { WorkoutProvider } from "./context/WorkoutContext.jsx";
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
                 <Route path="/workouts" element={<WorkoutsPage />} />
                 <Route path="/create-workout" element={<WorkoutCreatorPage />} />
                 <Route path="/new-training" element={<NewTrainingPage />} />
+                <Route path="/new-training/:id" element={<NewTrainingPage />} />
                 <Route path="/progress" element={<ProgressPage />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<SettingsPage />} />
               </Route>
             </Routes>
