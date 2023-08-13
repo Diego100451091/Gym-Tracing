@@ -12,7 +12,7 @@ const WorkoutsList = () => {
   )
 
   return (
-    <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-2 lg:grid-cols-2">
       {workouts.map((workout, index) => (
         <WorkoutCard key={index} workout={workout} />
       ))}
