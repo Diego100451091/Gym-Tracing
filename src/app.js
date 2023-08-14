@@ -5,6 +5,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import workoutsRoutes from "./routes/workout.routes.js";
 import exercisesRoutes from "./routes/exercise.routes.js";
+import workoutRecordsRoutes from "./routes/workoutRecord.routes.js";
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use(cookieParser());
 app.use("/api", authRoutes);
 app.use("/api", workoutsRoutes);
 app.use("/api", exercisesRoutes);
+app.use("/api", workoutRecordsRoutes);
 
 export default app;
