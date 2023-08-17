@@ -4,6 +4,7 @@ import {
   loginRequest,
   verifyTokenRequest,
 } from "../api/auth.api.js";
+import { throwSimpleError } from "../alerts/AlertProvider.jsx";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -26,20 +27,27 @@ export const AuthProvider = ({ children }) => {
     setUser(data);
     setIsAuthenticated(true);
     setIsLoading(false);
-  }
+  };
 
   const resetUser = () => {
     setUser(null);
     setIsAuthenticated(false);
     setIsLoading(false);
-  }
+  };
 
   const signup = async (user) => {
     try {
       const response = await registerRequest(user);
-      saveUser(response.data)
+      saveUser(response.data);
     } catch (error) {
-      setError(error.response.data);
+      if (error.response) {
+        setError(error.response.data);
+      } else {
+        throwSimpleError(
+          "Connection error",
+          "There was an error connecting with the server"
+        );
+      }
       resetUser();
     }
   };
@@ -49,7 +57,14 @@ export const AuthProvider = ({ children }) => {
       const response = await loginRequest(user);
       saveUser(response.data);
     } catch (error) {
-      setError(error.response.data);
+      if (error.response) {
+        setError(error.response.data);
+      } else {
+        throwSimpleError(
+          "Connection error",
+          "There was an error connecting with the server"
+        );
+      }
       resetUser();
     }
   };
@@ -57,7 +72,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     Cookies.remove("token");
     resetUser();
-  }
+  };
 
   useEffect(() => {
     if (error.length > 0) {
@@ -76,7 +91,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await verifyTokenRequest();
         if (!response.data) return resetUser();
-        
+
         console.log(response.data);
         return saveUser(response.data);
       } catch (error) {
@@ -96,7 +111,7 @@ export const AuthProvider = ({ children }) => {
         signup,
         login,
         logout,
-        isLoading
+        isLoading,
       }}
     >
       {children}
