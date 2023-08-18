@@ -17,6 +17,20 @@ export const throwTemporalError = (message) => {
   });
 };
 
+export const throwErrorWithCallback = (message, callback, buttonMessage) => {
+  Swal.fire({
+    title: "Error",
+    html: message,
+    icon: "error",
+    confirmButtonText: buttonMessage,
+    confirmButtonColor: "#b65e11",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      callback();
+    }
+  });
+}
+
 export const throwTemporalSuccess = (message) => {
   temporalNotification.fire({
     icon: "success",
