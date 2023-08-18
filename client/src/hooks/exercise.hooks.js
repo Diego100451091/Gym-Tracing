@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import {
+  requestExercise,
   requestBodyPartList,
   requestEquipementList,
   requestTargetMuscleList,
@@ -38,6 +39,31 @@ const useFilterCategory = (requestValueList) => {
     isSelected,
   };
 };
+
+export const useExerciseInformation = (exerciseId) => {
+  const [exercise, setExercise] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getExerciseInfo = async () => {
+    try {
+      let response = await requestExercise(exerciseId);
+      setIsLoading(false);
+      setExercise(response.data);
+    } catch {
+      console.error(error);
+      setIsLoading(true);
+    }
+  };
+
+  useEffect(() => {
+    getExerciseInfo();
+  }, []);
+
+  return {
+    exercise,
+    isLoading
+  }
+}
 
 export const useExerciseFilter = () => {
   const {
