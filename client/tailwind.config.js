@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       screens: {
+        '2xs': '400px',
         'xs': '520px', // Añade la escala xs a partir de 520px
       },
       colors: {
