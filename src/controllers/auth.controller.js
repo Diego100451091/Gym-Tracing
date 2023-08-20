@@ -105,9 +105,15 @@ export const verifyToken = async (req, res) => {
     const token = req.cookies.token;
     if (!token) return res.status(401).json(["Unauthorized"]);
 
-    const userVerified = await validateAccessToken(token);
-    if (!userVerified) return res.status(401).json(["Unauthorized"]);
-
+    let userVerified = null;
+    try{
+      userVerified = await validateAccessToken(token);
+      if (!userVerified) return res.status(401).json(["Unauthorized"]);
+    } catch {
+      console.log("Expired token")
+      return res.status(401).json(["Unauthorized"]);
+    }
+    
     const userFound = await User.findById(userVerified.id);
     if (!userFound) return res.status(401).json(["Unauthorized"]);
 

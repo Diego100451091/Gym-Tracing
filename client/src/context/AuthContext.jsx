@@ -95,7 +95,11 @@ export const AuthProvider = ({ children }) => {
         console.log(response.data);
         return saveUser(response.data);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 401){
+          console.log("Unauthorized user")
+        } else {
+          console.error(error);
+        }
         return resetUser();
       }
     }
