@@ -26,30 +26,37 @@ export const NewTrainingProvider = ({ children }) => {
     if (currentWorkout !== newWorkout) {
       setCurrentWorkout(newWorkout);
       const baseExercisesList = [];
-      exercisesList.forEach((exercise) => {
-        baseExercisesList.push = {
-          id: exercise.id,
-          warmUp: null,
-          sets: [{
+      exercisesList.forEach((exerciseId) => {
+        baseExercisesList.push({
+          id: exerciseId,
+          warmUp: {
             reps: "",
             weight: "",
-          }, {
+          },
+          sets: [
+            {
+              reps: "",
+              weight: "",
+            },
+            {
             reps: "",
-            weight: ""
-          }, {
+              weight: "",
+            },
+            {
             reps: "",
-            weight: ""
-          }],
-        };
+              weight: "",
+            },
+          ],
+        });
       });
-
+      console.log("Inicializing dict:", baseExercisesList)
       setExercises(baseExercisesList);
     }
   };
 
   const addSetInformation = (exerciseId, reps, weight, isWarmUp, index) => {
-    const newExercises = [...exercises];
-    newExercises = newExercises.map((exercise) => {
+    // console.log("Adding set information:", exerciseId, reps, weight, isWarmUp, index)
+    const newExercises = exercises.map((exercise) => {
       if (exercise.id === exerciseId) {
         if (isWarmUp) {
           exercise.warmUp = {
@@ -65,19 +72,18 @@ export const NewTrainingProvider = ({ children }) => {
       }
       return exercise;
     });
+    // console.log(newExercises);
+    setExercises(newExercises);
+  };
     setExercises(newExercises);
   };
 
-  const removeSet = (exerciseId, isWarmUp, index) => {
-    const newExercises = [...exercises];
-    newExercises = newExercises.map((exercise) => {
+  const removeSet = (exerciseId, index) => {
+    // console.log("Removing set:", exerciseId, index);
+    const newExercises = newExercises.map((exercise) => {
       if (exercise.id === exerciseId) {
-        if (isWarmUp) {
-          exercise.warmUp = null;
-        } else {
           exercise.sets.splice(index, 1);
         }
-      }
       return exercise;
     });
     setExercises(newExercises);
