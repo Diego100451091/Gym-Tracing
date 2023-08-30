@@ -39,11 +39,11 @@ export const NewTrainingProvider = ({ children }) => {
               weight: "",
             },
             {
-            reps: "",
+              reps: "",
               weight: "",
             },
             {
-            reps: "",
+              reps: "",
               weight: "",
             },
           ],
@@ -75,6 +75,19 @@ export const NewTrainingProvider = ({ children }) => {
     // console.log(newExercises);
     setExercises(newExercises);
   };
+
+  const addNewSet = (exerciseId) => {
+    // console.log("Adding set:", exerciseId);
+    const newExercises = exercises.map((exercise) => {
+      if (exercise.id === exerciseId) {
+        exercise.sets.push({
+          reps: "",
+          weight: "",
+        });
+        // console.log("Sets:", exercise.sets);
+      }
+      return exercise;
+    });
     setExercises(newExercises);
   };
 
@@ -82,12 +95,39 @@ export const NewTrainingProvider = ({ children }) => {
     // console.log("Removing set:", exerciseId, index);
     const newExercises = newExercises.map((exercise) => {
       if (exercise.id === exerciseId) {
-          exercise.sets.splice(index, 1);
-        }
+        exercise.sets.splice(index, 1);
+      }
       return exercise;
     });
     setExercises(newExercises);
   };
+
+  const cleanExercise = (exerciseId) => {
+    const newExercises = exercises.map((exercise) => {
+      if (exercise.id === exerciseId) {
+        exercise.warmUp = {
+          reps: "",
+          weight: "",
+        };
+        exercise.sets = [
+          {
+            reps: "",
+            weight: "",
+          },
+          {
+            reps: "",
+            weight: "",
+          },
+          {
+            reps: "",
+            weight: "",
+          },
+        ];
+      }
+      return exercise;
+    });
+    setExercises(newExercises);
+  }
 
   return (
     <NewTrainingContext.Provider
@@ -95,7 +135,9 @@ export const NewTrainingProvider = ({ children }) => {
         exercises,
         inicializeWorkout,
         addSetInformation,
+        addNewSet,
         removeSet,
+        cleanExercise,
       }}
     >
       {children}
