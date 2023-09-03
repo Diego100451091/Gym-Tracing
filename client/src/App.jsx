@@ -9,7 +9,7 @@ import WorkoutsPage from "./pages/WorkoutsPage.jsx";
 import ProgressPage from "./pages/ProgressPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import WorkoutCreatorPage from "./pages/WorkoutCreatorPage.jsx";
-import NewTrainingPage from './pages/NewTrainingPage.jsx';
+import WorkoutRecordPage from './pages/WorkoutRecordPage.jsx';
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
 import Profile from './pages/Profile.jsx';
 import { WorkoutProvider } from "./context/WorkoutContext.jsx";
@@ -29,8 +29,8 @@ function App() {
               <Route element={<ProtectedRoutes />}>
                 <Route path="/workouts" element={<WorkoutsPage />} />
                 <Route path="/create-workout" element={<WorkoutCreatorPage />} />
-                <Route path="/new-training" element={<NewTrainingPage />} />
-                <Route path="/new-training/:id" element={<NewTrainingPage />} />
+                <Route path="/workout-record" element={<WorkoutRecordPage />} />
+                <Route path="/workout-record/:id" element={<WorkoutRecordPage />} />
                 <Route path="/progress" element={<ProgressPage />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<SettingsPage />} />

@@ -21,7 +21,7 @@ const UnselectedTrainingPage = () => {
                 {workout?.name}
               </span>
               <ActionButton
-                onClick={() => navigate(`/new-training/${workout._id}`)}
+                onClick={() => navigate(`/workout-record/${workout._id}`)}
                 size="small"
                 customClass={"col-span-2 xs:place-self-end"}
               >

@@ -6,8 +6,8 @@ const AuthenticatedNav = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
   const authenticatedPages = {
     0: {
-      path: "/new-training",
-      title: "New training",
+      path: "/workout-record",
+      title: "New workout record",
       icon: "fa-regular fa-calendar-plus",
     },
     1: {

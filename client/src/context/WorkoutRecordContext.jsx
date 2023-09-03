@@ -6,17 +6,17 @@ import {
 } from "../alerts/AlertProvider.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
-const NewTrainingContext = createContext();
+const WorkoutRecordContext = createContext();
 
-export const useNewTrainingContext = () => {
-  const context = useContext(NewTrainingContext);
+export const useWorkoutRecordContext = () => {
+  const context = useContext(WorkoutRecordContext);
   if (!context) {
-    throw new Error("NewTrainingContext must be used within a WorkoutProvider");
+    throw new Error("WorkoutRecordContext must be used within a WorkoutProvider");
   }
   return context;
 };
 
-export const NewTrainingProvider = ({ children }) => {
+export const WorkoutRecordProvider = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [exercises, setExercises] = useState([]);
@@ -93,7 +93,7 @@ export const NewTrainingProvider = ({ children }) => {
 
   const removeSet = (exerciseId, index) => {
     // console.log("Removing set:", exerciseId, index);
-    const newExercises = newExercises.map((exercise) => {
+    const newExercises = exercises.map((exercise) => {
       if (exercise.id === exerciseId) {
         exercise.sets.splice(index, 1);
       }
@@ -130,7 +130,7 @@ export const NewTrainingProvider = ({ children }) => {
   }
 
   return (
-    <NewTrainingContext.Provider
+    <WorkoutRecordContext.Provider
       value={{
         exercises,
         inicializeWorkout,
@@ -141,6 +141,6 @@ export const NewTrainingProvider = ({ children }) => {
       }}
     >
       {children}
-    </NewTrainingContext.Provider>
+    </WorkoutRecordContext.Provider>
   );
 };

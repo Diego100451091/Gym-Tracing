@@ -3,9 +3,9 @@ import Header from "../components/sections/Header";
 import { useParams } from "react-router-dom";
 import UnselectedTrainingPage from "../components/sections/UnselectedTrainingPage";
 import SelectedTrainingPage from "../components/sections/SelectedTrainingPage";
-import { NewTrainingProvider } from '../context/NewTrainingContext';
+import { WorkoutRecordProvider } from '../context/WorkoutRecordContext';
 
-const NewTrainingPage = () => {
+const WorkoutRecordPage = () => {
   const params = useParams();
   const workoutId = useMemo(() => {
     return params.id ?? null;
@@ -16,9 +16,9 @@ const NewTrainingPage = () => {
       <Header title="New Training" />
       <main className="mt-12 py-4 px-6 flex flex-col gap-3 bg-white lg:grid lg:px-8">
         {workoutId ? (
-          <NewTrainingProvider>
+          <WorkoutRecordProvider>
             <SelectedTrainingPage workoutId={workoutId} />
-          </NewTrainingProvider>
+          </WorkoutRecordProvider>
         ) : (
           <UnselectedTrainingPage />
         )}
@@ -30,4 +30,4 @@ const NewTrainingPage = () => {
 
 
 
-export default NewTrainingPage;
+export default WorkoutRecordPage;
