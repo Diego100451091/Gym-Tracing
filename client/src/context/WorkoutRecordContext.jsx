@@ -20,12 +20,14 @@ export const WorkoutRecordProvider = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [exercises, setExercises] = useState([]);
+  const [skippedExercises, setSkippedExercises] = useState({});
 
   const inicializeWorkout = (newWorkout, exercisesList) => {
     // Create a dict with the keys of the exerciseList
     if (currentWorkout !== newWorkout) {
       setCurrentWorkout(newWorkout);
       const baseExercisesList = [];
+      const baseSkippedExercises = {};
       exercisesList.forEach((exerciseId) => {
         baseExercisesList.push({
           id: exerciseId,
@@ -48,9 +50,12 @@ export const WorkoutRecordProvider = ({ children }) => {
             },
           ],
         });
+        baseSkippedExercises[exerciseId] = false;
       });
       console.log("Inicializing dict:", baseExercisesList)
+      console.log(baseSkippedExercises);
       setExercises(baseExercisesList);
+      setSkippedExercises(baseSkippedExercises);
     }
   };
 
@@ -129,15 +134,24 @@ export const WorkoutRecordProvider = ({ children }) => {
     setExercises(newExercises);
   }
 
+  const onSkippedExerciseChange = (exerciseId, value) => {
+    cleanExercise(exerciseId);
+    const newSkippedExercises = {...skippedExercises};
+    newSkippedExercises[exerciseId] = value;
+    setSkippedExercises(newSkippedExercises);
+  }
+
   return (
     <WorkoutRecordContext.Provider
       value={{
         exercises,
+        skippedExercises,
         inicializeWorkout,
         addSetInformation,
         addNewSet,
         removeSet,
         cleanExercise,
+        onSkippedExerciseChange,
       }}
     >
       {children}
